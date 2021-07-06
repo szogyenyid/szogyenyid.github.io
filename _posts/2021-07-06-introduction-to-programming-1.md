@@ -38,3 +38,13 @@ You may already guessed: learning to program and learning to code are two totall
 If you are a programmer, you must know how to code & try your solution. As a coder, your programming skills don't have to be as high, but you have to know a (few) language(s) and some extralingual rules and methods well.
 
 In my opinion learning to code is easier, and not only because it's less abstract. There are ~infinite sources and free courses available online if you want to learn &lt;insert any language here&gt;, but it's extremely hard to find materials about **programming**, and if you find something, it's harder to learn on your own. A code is something that you can easily try, and see if it works, while a logical mistake is so much harder to identify and fix.
+
+In this blog I will try the almost impossible: teach the basics of programming.  
+But if I want to teach programming, I have to teach some coding too, so I have to choose a language.
+
+One of the easiest things online is to find a comment war (on any platform) under a question like "I want to start programming, which language should I choose?". Choosing a language can be hard, but to be honest, if you want to program - and not just code - it doesn't really matter. Every general-purpose programming language will do (please don't choose markup, modeling, or domain-specific languages), eg. Python, Java, PHP or C. Of course, all of them has advantages and disadvantages, there isn't a perfect choice.
+
+And here's the point where I will be one of the most unpopular tutors according to some coders: I will teach you to program using **C** language as the main tool.  
+It is low level, close to the hardware, and probably the most abstract, furthest away language from English. In my theory, if you understand the fundamentals of C, it will be a piece of cake to learn any other programming language, as you will **not just know, but understand** what's going on, and what does the comuter do. It will not be easy, but I will try my best to make this journey entertaining!
+
+<span>Next up: TBD</span>
