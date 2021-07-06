@@ -8,4 +8,8 @@ description: To be written
 author: Daniel Szogyenyi
 ---
 
-Content comes here
+# What is programming?
+
+# Programming vs Coding
+
+# How to learn what?
