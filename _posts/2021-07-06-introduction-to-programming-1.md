@@ -47,4 +47,4 @@ One of the easiest things online is to find a comment war (on any platform) unde
 And here's the point where I will be one of the most unpopular tutors according to some coders: I will teach you to program using **C** language as the main tool.  
 It is low level, close to the hardware, and probably the most abstract, furthest away language from English. In my theory, if you understand the fundamentals of C, it will be a piece of cake to learn any other programming language, as you will **not just know, but understand** what's going on, and what does the comuter do. It will not be easy, but I will try my best to make this journey entertaining!
 
-<div style="text-align: right;">Next part: TBD</div>
+<div style="text-align: right;">Next part: Coming soon</div>
