@@ -7,8 +7,8 @@ tags: intro text
 description: -> # to allow \n
 This is an introductory test post, to let the user show how does a single post look like, and shows some of the basic formatting provided by MD.
 last_modified_at: 2021-07-06 12:27:00 +0200
-author: Automatic
-comments: true #(disqus needed)
+author: Daniel Szogyenyi
+# comments: bool
 # math: bool (enable MathJax)
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
