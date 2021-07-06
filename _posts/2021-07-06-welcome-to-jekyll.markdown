@@ -2,8 +2,6 @@
 layout: post
 title:  "Welcome to Jekyll!"
 date:   2021-07-06 11:33:47 +0200
-categories: jekyll update
-tags: intro text
 description: This is an introductory test post, to let the user show how does a single post look like, and shows some of the basic formatting provided by MD.
 last_modified_at: 2021-07-06 12:27:00 +0200
 author: Daniel Szogyenyi
