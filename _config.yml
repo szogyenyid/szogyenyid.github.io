@@ -23,7 +23,7 @@ tagline: Another developer's blog
 lang: en
 author.name: Daniel Szogyenyi
 author.url: this
-# tags_path: # A path to the archive-by-tags page; It is used by tags on each post
+tags_path: /tags/
 # categories_path: # A path to the archive-by-categories page; It is used by categories on each post
 # google_analytics: # Google Analytics 4 Measurement ID
 
