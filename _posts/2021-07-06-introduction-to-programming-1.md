@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Introduction to Programming"
-date: 2021-07-06 19:38:00 +0200
+title: "Introduction to Programming #1"
+date: 2021-07-06 20:19:00 +0200
 tags: learning programming
 description: To be written
 # last_modified_at: 2021-07-06 12:27:00 +0200
@@ -28,6 +28,8 @@ So, programming is about planning something, and coding is about implementing it
 
 > Programming is about planning something, and coding is about implementing it.
 
-In other words, "programming" has a somehow abstract output, which is mostly done by your brain, and not your fingers.
+In other words, "programming" has a somehow abstract output - the logic of the program to be done - which is mostly done by your brain, and not your fingers. At larger companies there are positions where someone's work is mostly about programming, not _coding_. Of course, every _programmer_ must write code during their job, it's about the ratio.
+
+Coding is a different kind of activity, it needs a totally different approach, and a whole other mindset. It's not about planning the logical steps, you already have them. This step is for the manifestation, where something theoretical becomes practical. Someone who codes have to know a lot of things, like rules of the chosen language, general and company-exclusive coding conventions, version management, and hundreds of other complicated or not-so-complicated stuff.
 
 ## How to learn what?
