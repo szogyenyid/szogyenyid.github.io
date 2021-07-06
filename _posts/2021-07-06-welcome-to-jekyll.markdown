@@ -3,6 +3,12 @@ layout: post
 title:  "Welcome to Jekyll!"
 date:   2021-07-06 11:33:47 +0200
 categories: jekyll update
+tags: intro text
+description: Test description
+last_modified_at: 2021-07-06 12:27:00 +0200
+author: Automatic
+# comments: bool (disqus needed)
+# math: bool (enable MathJax)
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
