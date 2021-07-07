@@ -4,7 +4,7 @@ title: "Introduction to Programming: Declarative vs Imperative"
 date: 2021-07-07 13:57:00 +0200
 category: Learning # Learning | Data Science | Security | Meta | Stories
 tags:
-    - learning
+    - declarative
     - imperative
     - programming
 description: What is the difference between declarative and imperative paradigms? What do we have to say to the computer, and what kind of questions do we want to answer? I am giving a short summary of the declarative and imperative approaches.
