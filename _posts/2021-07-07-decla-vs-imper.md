@@ -43,6 +43,8 @@ $$ y = \tfrac{y+\tfrac{x}{y}}{2} $$
 
 - Improve until the guess is _good enough_
 
+
+
 <div>
     <span style="width:50%; text-align: left;"><a href="https://szogyenyid.github.io/learning/2021/07/06/introduction-to-programming-1.html">Previous part: Introduction to Programming #1</a></span>
     <span style="width:50%; text-align: right;">Next part: Coming soon</span>
