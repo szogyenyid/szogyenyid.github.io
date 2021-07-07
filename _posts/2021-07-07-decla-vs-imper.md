@@ -34,7 +34,7 @@ There are declarative programming languages, where we know the attributes of a g
 Imperative knowledge is about giving methods for solving a problem, answering the "How to do it?" question. Using imperative methods, we are able the generate useful data based on another data.
 
 Let's see the square root again.  
-A method for determining the square root of $$ x $$ can be defined as:  
+A method for determining the square root of $$ x $$ (if $$ x\geqslant0 $$) can be defined as:  
 
 - Guess the square root $$ y $$.
 - Improve our guess using this formula:
@@ -42,6 +42,10 @@ A method for determining the square root of $$ x $$ can be defined as:
 $$ y = \tfrac{y+\tfrac{x}{y}}{2} $$
 
 - Improve until the guess is _good enough_
+
+You can see, with this method if we get an $$ x $$ we can determine the $$ y $$ for it.
+
+In the imperative programming paradigm we have to write a program, in which we give a step-by-step guide to the computer, so our focus is on the way of the solution. As I would like to teach you the basics of programming, and C is an imperative programming language, you will have to learn this mindset.
 
 
 
