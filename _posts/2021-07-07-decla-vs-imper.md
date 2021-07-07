@@ -46,6 +46,6 @@ $$ y = \tfrac{y+\tfrac{x}{y}}{2} $$
 
 
 <div>
-    <span style="display:block; float:left;"><a href="https://szogyenyid.github.io/learning/2021/07/06/introduction-to-programming-1.html">Previous part: Introduction to Programming #1</a></span> 
+    <span style="display:block; float:left;"><a href="https://szogyenyid.github.io/learning/2021/07/06/introduction-to-programming-1.html">Previous part: Introduction to Programming #1</a></span> | 
     <span style="display:block; float:right;">Next part: Coming soon</span>
 </div>
