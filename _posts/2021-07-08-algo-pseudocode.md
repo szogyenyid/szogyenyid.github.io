@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to Programming: Algorithms & Pseudocodes"
-date: 2021-07-07 07:00:00 +0200
+date: 2021-07-08 07:00:00 +0200
 category: Learning # Learning | Data Science | Security | Meta | Stories
 tags:
     - programming
@@ -29,7 +29,7 @@ However, we encounter a ton of problems which share similarities or even the exa
 
 ## Getting into pseudocodes
 
-> **pseudo-** /sjuː.dəʊ-/ • prefix
+> **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span>
 > 1. pretended and not real[^fn-pseudo-dictionary]
 
 A pseudocode looks like a piece of code, but no interpreter or compiler on your computer will be able to run it. It's written for your brain in a human language to better understand the logic behind and algorithm.
@@ -67,7 +67,7 @@ You have just read the description of an algorithm.
 - Only needs a finite amount of memory
 
 
-[^fn-sample_footnote]: [Cambridge Dictionary][cambridge-pseudo]
+<!-- [^fn-sample_footnote]: [Cambridge Dictionary][cambridge-pseudo] -->
 
 [decimp-decla]: https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html#declarative-approach
 [taocp]: https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming
