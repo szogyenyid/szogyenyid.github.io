@@ -2,7 +2,7 @@
 layout: post
 title: "Introduction to Programming #1"
 date: 2021-07-06 21:04:00 +0200
-category: Two worded
+category: Learning # Learning | Data Science | Meta | Stories
 tags:
     - learning
     - programming
