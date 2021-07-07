@@ -31,6 +31,8 @@ However, we encounter a ton of problems which share similarities or even the exa
 
 > **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span><br>1\. pretended and not real[^fn-pseudo-dictionary]
 
+[^fn-sample_footnote]: [Cambridge Dictionary][cambridge-pseudo]
+
 [decimp-decla]: https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html#declarative-approach
 [taocp]: https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming
 [cambridge-pseudo]: https://dictionary.cambridge.org/dictionary/english/pseudo
