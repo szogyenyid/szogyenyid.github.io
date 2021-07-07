@@ -22,7 +22,7 @@ There are several ways of giving a solution for a given problem. Now I would lik
 Declarative knowledge answers the question "What is true?" and makes statements. Using our declarative knowledge, we can always check if a statement we have is true or false (or we don't know).
 
 Example: the square root of a number.
-Our declarative knowledge would say "the square root of a number $x$ is a number $y$ such that $y^2 = x$ and $y\geqslant0$".
+Our declarative knowledge would say "the square root of a number \( x \) is a number \( y \) such that \( y^2 = x \) and \( y\geqslant0 \)".
 
 ### Imperative approach
 
