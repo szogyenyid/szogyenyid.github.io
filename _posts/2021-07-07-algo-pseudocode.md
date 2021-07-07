@@ -35,7 +35,9 @@ A pseudocode looks like a piece of code, but no interpreter or compiler on your 
 
 Let's see a pseudocode for getting the pass ratio of an exam.  
 
+```
 HIGHLIGHT COMES HERE
+```
 
 _Note that everything in this code is a simple, easy-to-do step, like equality check and addition._
 
