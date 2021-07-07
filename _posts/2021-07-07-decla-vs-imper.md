@@ -10,6 +10,7 @@ tags:
 description: TBW
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
+mathjax: true
 math: true
 ---
 
