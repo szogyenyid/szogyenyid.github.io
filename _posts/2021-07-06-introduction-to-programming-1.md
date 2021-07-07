@@ -16,8 +16,8 @@ author: Daniel Szogyenyi
 
 In my opinion programming is a **mindset**. The main part is not about writing code, but understanding the essential problem, and solving it. Okay, solving involves coding, rules, conventions, but it can be done many ways. The aim is to plan the **logical steps of getting to your solution**.  
 
-Let's see a dumb example: `I want to eat a PB&J sandwich`.  
-The problem is, `I don't have one`.  
+Let's see a dumb example: **I want to eat a PB&J sandwich**.  
+The problem is, **I don't have one**.  
 I would solve it by going to the store, buying PB, jelly, and bread (I already know I have knives at home). Before I get out the house, I take my wallet, because I will have to pay. After getting home, I take out a slice of bread from the bag, open the jar of PB and jelly, get a knife, spread them on the bread, and basically I'm done.
 
 One could say: _what does "spreading" mean? How thick layers do I want?_  
