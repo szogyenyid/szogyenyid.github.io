@@ -6,6 +6,7 @@ category: Learning # Learning | Data Science | Meta | Stories
 tags:
     - learning
     - programming
+    - coding
 description: What is programming? Is it different from coding, or are they the same thing? How do you learn one or the other? I do not have the clearest and and most satisfying answers ever, but I am trying to clarify things in this article.
 # last_modified_at: 2021-07-06 12:27:00 +0200
 author: Daniel Szogyenyi
