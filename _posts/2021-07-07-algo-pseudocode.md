@@ -33,7 +33,7 @@ However, we encounter a ton of problems which share similarities or even the exa
 
 _Cambridge Dictionary_[^fn-pseudo-dictionary]
 
-[^fn-sample_footnote]: [Cambridge Dictionary][cambridge-pseudo]
+[^fn-pseudo-dictionary]: [Cambridge Dictionary][cambridge-pseudo]
 
 [decimp-decla]: https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html#declarative-approach
 [taocp]: https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming
