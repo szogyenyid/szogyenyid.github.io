@@ -29,9 +29,8 @@ However, we encounter a ton of problems which share similarities or even the exa
 
 ## Getting into pseudocodes
 
-> **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span><br>1\. pretended and not real
+> **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span><br>1\. pretended and not real[^fn-pseudo-dictionary]
 
-_Cambridge Dictionary_[^fn-pseudo-dictionary]
 
 [^fn-pseudo-dictionary]: [Cambridge Dictionary][cambridge-pseudo]
 
