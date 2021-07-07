@@ -11,3 +11,8 @@ description: TBW
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
 ---
+
+
+[decimp-decla]: https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html#declarative-approach
+[taocp]: https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming
+[cambridge-pseudo]: https://dictionary.cambridge.org/dictionary/english/pseudo
