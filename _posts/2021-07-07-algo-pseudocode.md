@@ -29,8 +29,7 @@ However, we encounter a ton of problems which share similarities or even the exa
 
 ## Getting into pseudocodes
 
-> **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span>
-> 1\. pretended and not real[^fn-pseudo-dictionary]
+> **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span><br>1\. pretended and not real[^fn-pseudo-dictionary]
 
 [decimp-decla]: https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html#declarative-approach
 [taocp]: https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming
