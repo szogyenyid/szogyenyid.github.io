@@ -4,15 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+I am a Software Architect at [Case Solvers](https://case-solvers.com/), where I am responsible for company-wide programming-related decisions and the design of most of our databases and data warehouses.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+I spent 2 years on Electrical Engineering BSc at Budapest University of Technology and Economics, specialized in digital signal processing, then I switched to Computer Science bachelor's programme, where I've chosen the "Data Engineer" specialization.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+I have a passion for exploratory data analysis, data mining, education and environmental sustainability.
