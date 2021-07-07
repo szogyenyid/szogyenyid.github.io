@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to Programming: Algorithms & Pseudocodes"
-date: 2021-07-08 07:00:00 +0200
+date: 2021-07-07 07:00:00 +0200
 category: Learning # Learning | Data Science | Security | Meta | Stories
 tags:
     - programming
