@@ -44,7 +44,7 @@ While currentStudent is less than or equal to numberOfStudents:
     If the score of (currentStudent)th student is greater than 60
         Add 1 to numberOfPasses
     Add 1 to currentStudent
-Print: (100*numberOfPasses/numberOfStudents) % of students has passed this exam
+Print: (100*numberOfPasses/numberOfStudents) % of passed
 ```
 
 _Note that everything in this code is a simple, easy-to-do step, like equality check and addition._
