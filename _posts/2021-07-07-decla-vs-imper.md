@@ -37,15 +37,13 @@ Let's see the square root again.
 A method for determining the square root of $$ x $$ can be defined as:  
 
 - Guess the square root $$ y $$.
-- Improve our guess using the formula:
+- Improve our guess using this formula:
 
 $$ y = \tfrac{y+\tfrac{x}{y}}{2} $$
 
 - Improve until the guess is _good enough_
 
 <div>
-    <span style="width:50%; text-align: left;">Previous part: [Introduction to programming #1][intro1]</span>
+    <span style="width:50%; text-align: left;"><a href="https://szogyenyid.github.io/learning/2021/07/06/introduction-to-programming-1.html">Previous part: Introduction to Programming #1</a></span>
     <span style="width:50%; text-align: right;">Next part: Coming soon</span>
 </div>
-
-[intro1]: https://szogyenyid.github.io/learning/2021/07/06/introduction-to-programming-1.html
