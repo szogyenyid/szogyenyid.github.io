@@ -36,7 +36,15 @@ A pseudocode looks like a piece of code, but no interpreter or compiler on your 
 Let's see a pseudocode for getting the pass ratio of an exam.  
 
 ```
-HIGHLIGHT COMES HERE
+Numbers to remember: numberOfStudents, currentStudent, numberOfPasses
+Set numberOfStudents to 30
+Set currentStudent to 1
+Set numberOfPasses to 0
+While currentStudent is less than or equal to numberOfStudents:
+    If the score of (currentStudent)th student is greater than 60
+        Add 1 to numberOfPasses
+    Add 1 to currentStudent
+Print: (100*numberOfPasses/numberOfStudents) % of students has passed this exam
 ```
 
 _Note that everything in this code is a simple, easy-to-do step, like equality check and addition._
