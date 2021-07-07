@@ -17,6 +17,16 @@ author: Daniel Szogyenyi
 In programming, we usually get a specification, which is the description of a problem. In the majority of the times it is something **[declarative][decimp-decla]**, and programmers have the task to create an **imperative** solution, such a method that generates the wanted output using the given input.  
 So, specification is all about "what to solve" and an algorithm is about "how to solve". The programmer's responsibility is converting the "what" to "how", and the rest of this "Introduction to Programming" course will talk about essentials you must know to be able to do this conversion.
 
+## How to go from "what" to "how"?
+
+If I could give an answer to this question in a tiny paragraph (or even in a tome), I would be a billionaire. No explicit answer exists, and that's why programmers earn money. This is a complex mental activity which is hard to master, always with some room to get better. If we look at programming from different angles, we can see merely different things:
+
+- Science: yeah, just like the name **computer science** suggests, it's science. Algorithms can be handled by mathematical stuff, their correctness can be proven, their complexity can be calculated, and so on.  
+- Engineering: an expression similar to "programmer" is "**software engineer**". Some aspects of creating a program is the same as designing a car engine. You have to keep in mind a lot of things in order to prevent components interfering with each other, you have to control them in a way that they could work simultaneosly. There are a lot of written ans unwritten rules to follow.  
+- Art: creating an algorithm requires unique ideas, a great programmer should see things that others don't. One of the most famous books about algorithms is titled [The Art of Computer Programming][taocp], I think that means something.
+
+However, we encounter a ton of problems which share similarities or even the exact same ones. We don't have to reinvent the wheel each time we want to use it: there are well-tried solutions worth using again. A good programmer can tell more methods for sorting a list, and they know which method is the fastest in various situations. Keep in mind, when programming, you will have to use learnt algorithms to suit your needs.
+
 [decimp-decla]: https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html#declarative-approach
 [taocp]: https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming
 [cambridge-pseudo]: https://dictionary.cambridge.org/dictionary/english/pseudo
