@@ -22,10 +22,23 @@ There are several ways of giving a solution for a given problem. Now I would lik
 
 Declarative knowledge answers the question "What is true?" and makes statements. Using our declarative knowledge, we can always check if a statement we have is true or false (or we don't know).
 
-Example: the square root of a number.
-Our declarative knowledge would say "the square root of a number $$ x $$ is a number $$ y $$ such that $$ y^2 = x $$ and $$ y\geqslant0 $$".
+Example: the square root of a number.  
+Our declarative knowledge would say "the square root of a number $$ x $$ is a number $$ y $$ such that $$ y^2 = x $$ and $$ y\geqslant0 $$ ".
+
+So, if someone gives us an $$ x $$ and a $$ y $$, we can tell if $$ y^2=x $$ is true or false.
+
+There are declarative programming languages, where we know the attributes of a good solution, but the computer makes up the way of giving us the answers. SQL is a perfect example, where we only command the computer to "give me the e-mail addresses of all the users, who are signed up for the newsletters, and interested in imperative languages", and the computer _magically_ does this.
 
 ### Imperative approach
+
+Imperative knowledge is about giving methods for solving a problem, answering the "How to do it?" question. Using imperative methods, we are able the generate useful data based on another data.
+
+Let's see the square root again.  
+A method for determining the square root of $$ x $$ can be defined as:  
+
+- Guess the square root $$ y $$.
+- Improve our guess using the formula: $$ y = \tfrac{y+\tfrac{x}{y}}{2} $$
+- Improve until the guess is _good enough_
 
 <div>
     <span style="width:50%; text-align: left;">Previous part: To be filled</span>
