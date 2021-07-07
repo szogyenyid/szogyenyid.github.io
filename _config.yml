@@ -25,7 +25,7 @@ author.name: Daniel Szogyenyi
 author.url: this
 tags_path: /tags/
 # categories_path: # A path to the archive-by-categories page; It is used by categories on each post
-# google_analytics: # Google Analytics 4 Measurement ID
+google_analytics: G-MPFCMD4MVH
 
 # Build settings
 # theme: minima
