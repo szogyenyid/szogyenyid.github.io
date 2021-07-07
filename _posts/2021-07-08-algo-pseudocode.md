@@ -54,6 +54,8 @@ As you have seen, a pseudocode contains:
 - The **commands** to do, like division and addition
 - Commands and decision points that determine the order of the steps: **control flow**
 
+You have just read the description of an algorithm.
+
 ## Algorithm
 
 **An algorithm is a method for solving the task.**
