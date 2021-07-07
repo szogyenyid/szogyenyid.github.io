@@ -27,6 +27,11 @@ If I could give an answer to this question in a tiny paragraph (or even in a tom
 
 However, we encounter a ton of problems which share similarities or even the exact same ones. We don't have to reinvent the wheel each time we want to use it: there are well-tried solutions worth using again. A good programmer can tell more methods for sorting a list, and they know which method is the fastest in various situations. Keep in mind, when programming, you will have to use learnt algorithms to suit your needs.
 
+## Getting into pseudocodes
+
+> **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span>
+> 1. pretended and not real[^fn-pseudo-dictionary]
+
 [decimp-decla]: https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html#declarative-approach
 [taocp]: https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming
 [cambridge-pseudo]: https://dictionary.cambridge.org/dictionary/english/pseudo
