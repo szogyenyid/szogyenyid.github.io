@@ -38,7 +38,7 @@ A method for determining the square root of $$ x $$ can be defined as:
 
 - Guess the square root $$ y $$.
 - Improve our guess using the formula:
-    - $$ y = \tfrac{y+\tfrac{x}{y}}{2} $$
+$$ y = \tfrac{y+\tfrac{x}{y}}{2} $$
 - Improve until the guess is _good enough_
 
 <div>
