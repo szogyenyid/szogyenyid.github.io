@@ -16,7 +16,7 @@ library(caret) # for data separation and confusion matrix
 # Reading the file
 
 ```{r}
-df <- read_csv("diabetes.csv",col_types = cols())
+df <- read_csv("~/Documents/Kaggle_Datasets/diabetes.csv",col_types = cols())
 head(df)
 ```
 
@@ -101,7 +101,7 @@ As logistic regression returns the probability of being true, if the value is la
 
 ```{r}
 xgbpred <- predict (xgb1,testData)
-xgbpred <- ifelse (xgbpred > 0.5,1,0)
+xgbpred <- as.numeric(xgbpred>0.5)
 ```
 
 ## Analysing the confusion matrix
@@ -109,8 +109,8 @@ xgbpred <- ifelse (xgbpred > 0.5,1,0)
 ```{r}
 confusionMatrix (as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ```
-The model reached an accuracy of ~96%, with a high enough sensitivity and specifity.  
-2 out of 40 people without diabetes was marked "having diabetes" and  
+The model reached an accuracy of ~99%, with a high enough sensitivity and specifity.  
+1 out of 40 people without diabetes was marked "having diabetes" and  
 0 out of 64 people with diabetes was marked "not having diabetes".  
 
 It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as ill, because further medical examinations can confirm or reject this prediction.
@@ -122,6 +122,6 @@ mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model =
 xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 ```
 
-The most important factor in the determination of someone having diabetes is polydipsia.  
-The second more important factors are gender and age (and polyuria, but it has a strong correlation with polydipsia obviously).  
-Alopecia, polyphagia and irritability should be considered as important factors, and everything in the "Cluster 1" (marked with red) is close to irrelevant.
+The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation betwen the two), as if someone consumes a lot of water, they will have a lot of urine.
+The second more important factors are gender and age.  
+Alopecia should be considered as an important factor, and everything in the "Cluster 1" (marked with red) is close to irrelevant.
