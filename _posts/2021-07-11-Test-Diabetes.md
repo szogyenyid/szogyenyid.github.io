@@ -1,9 +1,21 @@
 ---
-title: "Predicting type 2 diabetes based on age, gender, and symptoms"
-author: "Dániel Szőgyényi"
-date: "2021.07.02."
-output: html_notebook
+layout: post
+title: "Dataset Analysis: Early stage diabetes risk prediction using XGBoost"
+date: 2021-07-11 11:56:00 +0200
+category: Data Science # Learning | Data Science | Security | Meta | Stories
+tags:
+    - r
+    - xgboost
+    - classification
+    - medical
+description: Predicting early stage diabetes using XGBoost (logistic gbtrees). The used dataset is from UCI Machine Learning Repository.
+# last_modified_at: 2021-07-07 09:40:00 +0200
+author: Daniel Szogyenyi
 ---
+
+# Introducing the dataset
+
+The data I used is from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Early+stage+diabetes+risk+prediction+dataset.#). The set has been collected using direct questionnaires from the patients of Sylhet Diabetes Hospital in Sylhet, Bangladesh and approved by a doctor.
 
 # Including libraries
 
@@ -18,7 +30,7 @@ library(caret) # for data separation and confusion matrix
 
 
 {% highlight r %}
-df <- read_csv("~/Documents/Kaggle_Datasets/diabetes.csv",col_types = cols())
+df <- read_csv("src/diabetes.csv", col_types = cols())
 head(df)
 {% endhighlight %}
 
@@ -60,7 +72,7 @@ df$Gender <- NULL
 
 ## Separate the dataset
 
-Will use 80% of the data for training, and 20% for testing. "Diabetes" ratio in the new sets remain the same as in the whole set.
+Will use 80% of the data for training, and 20% for testing. "Diabetes" ratio in the subsets remain the same as in the whole set.
 
 
 {% highlight r %}
@@ -72,7 +84,7 @@ testData <- xgb.DMatrix(data = as.matrix(df[-idx,1:16]), label = unlist(df[-idx,
 
 # Creating the model
 
-## Set up parameters and a cross-validation
+## Set up parameters
 
 
 {% highlight r %}
@@ -87,7 +99,12 @@ params <- list(
   subsample=1,
   colsample_bytree=1
 )
+{% endhighlight %}
 
+## Cross-validate to get the ideal number of iterations
+
+
+{% highlight r %}
 xgbcv <- xgb.cv(
   params = params,
   data = trainData,
@@ -99,7 +116,7 @@ xgbcv <- xgb.cv(
 )
 {% endhighlight %}
 
-## Let's see the ideal number of iterations
+## Get the ideal number of iterations
 
 
 {% highlight r %}
@@ -111,31 +128,29 @@ print(bestIter)
 
 {% highlight text %}
 ##    iter train_logloss_mean train_logloss_std test_logloss_mean test_logloss_std
-## 1:  108          0.0126502      0.0005526738         0.1201801       0.07066102
+## 1:   82          0.0139003       0.000518237         0.0963067       0.08343103
 {% endhighlight %}
 
 ## Create the model
 
 
 {% highlight r %}
-xgb1 <- xgb.train (params = params, data = trainData, nrounds = bestIter$iter, watchlist = list(val=testData,train=trainData), print_every_n = 10)
+xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, watchlist = list(test=testData,train=trainData), print_every_n = 10)
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## [1]	val-logloss:0.397396	train-logloss:0.377595 
-## [11]	val-logloss:0.070882	train-logloss:0.050304 
-## [21]	val-logloss:0.045248	train-logloss:0.028858 
-## [31]	val-logloss:0.041388	train-logloss:0.021677 
-## [41]	val-logloss:0.039579	train-logloss:0.017741 
-## [51]	val-logloss:0.038201	train-logloss:0.015684 
-## [61]	val-logloss:0.037961	train-logloss:0.014254 
-## [71]	val-logloss:0.038008	train-logloss:0.013387 
-## [81]	val-logloss:0.038218	train-logloss:0.012884 
-## [91]	val-logloss:0.037395	train-logloss:0.012472 
-## [101]	val-logloss:0.037695	train-logloss:0.012215 
-## [108]	val-logloss:0.037151	train-logloss:0.011825
+## [1]	test-logloss:0.399499	train-logloss:0.377829 
+## [11]	test-logloss:0.113968	train-logloss:0.052075 
+## [21]	test-logloss:0.092562	train-logloss:0.029166 
+## [31]	test-logloss:0.087457	train-logloss:0.021936 
+## [41]	test-logloss:0.081686	train-logloss:0.018393 
+## [51]	test-logloss:0.077914	train-logloss:0.016081 
+## [61]	test-logloss:0.078813	train-logloss:0.014824 
+## [71]	test-logloss:0.076616	train-logloss:0.013821 
+## [81]	test-logloss:0.075995	train-logloss:0.013188 
+## [82]	test-logloss:0.075778	train-logloss:0.013151
 {% endhighlight %}
 
 # Evaluation of the model
@@ -147,7 +162,7 @@ As logistic regression returns the probability of being true, if the value is la
 
 
 {% highlight r %}
-xgbpred <- predict (xgb1,testData)
+xgbpred <- predict(xgb1,testData)
 xgbpred <- as.numeric(xgbpred>0.5)
 {% endhighlight %}
 
@@ -155,7 +170,7 @@ xgbpred <- as.numeric(xgbpred>0.5)
 
 
 {% highlight r %}
-confusionMatrix (as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
+confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 {% endhighlight %}
 
 
@@ -165,26 +180,26 @@ confusionMatrix (as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ## 
 ##           Reference
 ## Prediction  0  1
-##          0 40  1
-##          1  0 63
+##          0 38  0
+##          1  2 64
 ##                                           
-##                Accuracy : 0.9904          
-##                  95% CI : (0.9476, 0.9998)
+##                Accuracy : 0.9808          
+##                  95% CI : (0.9323, 0.9977)
 ##     No Information Rate : 0.6154          
 ##     P-Value [Acc > NIR] : <2e-16          
 ##                                           
-##                   Kappa : 0.9798          
+##                   Kappa : 0.959           
 ##                                           
-##  Mcnemar's Test P-Value : 1               
+##  Mcnemar's Test P-Value : 0.4795          
 ##                                           
-##             Sensitivity : 1.0000          
-##             Specificity : 0.9844          
-##          Pos Pred Value : 0.9756          
-##          Neg Pred Value : 1.0000          
+##             Sensitivity : 0.9500          
+##             Specificity : 1.0000          
+##          Pos Pred Value : 1.0000          
+##          Neg Pred Value : 0.9697          
 ##              Prevalence : 0.3846          
-##          Detection Rate : 0.3846          
-##    Detection Prevalence : 0.3942          
-##       Balanced Accuracy : 0.9922          
+##          Detection Rate : 0.3654          
+##    Detection Prevalence : 0.3654          
+##       Balanced Accuracy : 0.9750          
 ##                                           
 ##        'Positive' Class : 0               
 ## 
@@ -193,7 +208,7 @@ The model reached an accuracy of ~99%, with a high enough sensitivity and specif
 1 out of 40 people without diabetes was marked "having diabetes" and  
 0 out of 64 people with diabetes was marked "not having diabetes".  
 
-It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as ill, because further medical examinations can confirm or reject this prediction.
+It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction.
 
 ## Analysing the importance of features
 
@@ -203,7 +218,7 @@ mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model =
 xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-10](/assets/Rfig/unnamed-chunk-10-1.svg)
+![plot of chunk unnamed-chunk-20](/assets/Rfig/unnamed-chunk-20-1.svg)
 
 The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation betwen the two), as if someone consumes a lot of water, they will have a lot of urine.
 The second more important factors are gender and age.  
