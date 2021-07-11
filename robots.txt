@@ -1,2 +1,5 @@
+---
+layout:none
+---
 User-agent: *
 Sitemap: https://szogyenyid.github.io/sitemap.xml
