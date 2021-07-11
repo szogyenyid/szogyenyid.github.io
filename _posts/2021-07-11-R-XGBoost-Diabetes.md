@@ -13,11 +13,11 @@ description: Predicting early stage diabetes using XGBoost (logistic gbtrees). T
 author: Daniel Szogyenyi
 ---
 
-# Introducing the dataset
+## Introducing the dataset
 
 The data I used is from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Early+stage+diabetes+risk+prediction+dataset.#). The set has been collected using direct questionnaires from the patients of Sylhet Diabetes Hospital in Sylhet, Bangladesh and approved by a doctor.
 
-# Including libraries
+## Including libraries
 
 
 {% highlight r %}
@@ -26,7 +26,7 @@ library(xgboost) # for the prediction model
 library(caret) # for data separation and confusion matrix
 {% endhighlight %}
 
-# Reading the file
+## Reading the file
 
 
 {% highlight r %}
@@ -49,9 +49,9 @@ head(df)
 ## # … with 3 more variables: Alopecia <chr>, Obesity <chr>, class <chr>
 {% endhighlight %}
 
-# Preprocessing
+## Preprocessing
 
-## Cast all types to logical
+### Cast all types to logical
 
 Gender is mutated into "isMale", "Female" leading to FALSE, and "Male" to TRUE.
 
@@ -70,7 +70,7 @@ df$class <- NULL
 df$Gender <- NULL
 {% endhighlight %}
 
-## Separate the dataset
+### Separate the dataset
 
 Will use 80% of the data for training, and 20% for testing. "Diabetes" ratio in the subsets remain the same as in the whole set.
 
@@ -82,9 +82,9 @@ trainData <- xgb.DMatrix(data = as.matrix(df[idx,1:16]), label = unlist(df[idx,1
 testData <- xgb.DMatrix(data = as.matrix(df[-idx,1:16]), label = unlist(df[-idx,17]))
 {% endhighlight %}
 
-# Creating the model
+## Creating the model
 
-## Set up parameters
+### Set up parameters
 
 
 {% highlight r %}
@@ -101,7 +101,7 @@ params <- list(
 )
 {% endhighlight %}
 
-## Cross-validate to get the ideal number of iterations
+### Cross-validate to get the ideal number of iterations
 
 
 {% highlight r %}
@@ -116,7 +116,7 @@ xgbcv <- xgb.cv(
 )
 {% endhighlight %}
 
-## Get the ideal number of iterations
+### Get the ideal number of iterations
 
 
 {% highlight r %}
@@ -128,10 +128,10 @@ print(bestIter)
 
 {% highlight text %}
 ##    iter train_logloss_mean train_logloss_std test_logloss_mean test_logloss_std
-## 1:   82          0.0139003       0.000518237         0.0963067       0.08343103
+## 1:   22           0.025018       0.001302556         0.1084201        0.1041626
 {% endhighlight %}
 
-## Create the model
+### Create the model
 
 
 {% highlight r %}
@@ -141,21 +141,15 @@ xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, wa
 
 
 {% highlight text %}
-## [1]	test-logloss:0.399499	train-logloss:0.377829 
-## [11]	test-logloss:0.113968	train-logloss:0.052075 
-## [21]	test-logloss:0.092562	train-logloss:0.029166 
-## [31]	test-logloss:0.087457	train-logloss:0.021936 
-## [41]	test-logloss:0.081686	train-logloss:0.018393 
-## [51]	test-logloss:0.077914	train-logloss:0.016081 
-## [61]	test-logloss:0.078813	train-logloss:0.014824 
-## [71]	test-logloss:0.076616	train-logloss:0.013821 
-## [81]	test-logloss:0.075995	train-logloss:0.013188 
-## [82]	test-logloss:0.075778	train-logloss:0.013151
+## [1]	test-logloss:0.385937	train-logloss:0.380439 
+## [11]	test-logloss:0.094956	train-logloss:0.044778 
+## [21]	test-logloss:0.082849	train-logloss:0.024489 
+## [22]	test-logloss:0.084271	train-logloss:0.023817
 {% endhighlight %}
 
-# Evaluation of the model
+## Evaluation of the model
 
-## Prediction on test dataset
+### Prediction on test dataset
 
 Let's predict the test dataset.  
 As logistic regression returns the probability of being true, if the value is larger than 0.5, let's say the person has diabetes.
@@ -166,7 +160,7 @@ xgbpred <- predict(xgb1,testData)
 xgbpred <- as.numeric(xgbpred>0.5)
 {% endhighlight %}
 
-## Analysing the confusion matrix
+### Analysing the confusion matrix
 
 
 {% highlight r %}
@@ -180,26 +174,26 @@ confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ## 
 ##           Reference
 ## Prediction  0  1
-##          0 38  0
-##          1  2 64
+##          0 39  1
+##          1  1 63
 ##                                           
 ##                Accuracy : 0.9808          
 ##                  95% CI : (0.9323, 0.9977)
 ##     No Information Rate : 0.6154          
 ##     P-Value [Acc > NIR] : <2e-16          
 ##                                           
-##                   Kappa : 0.959           
+##                   Kappa : 0.9594          
 ##                                           
-##  Mcnemar's Test P-Value : 0.4795          
+##  Mcnemar's Test P-Value : 1               
 ##                                           
-##             Sensitivity : 0.9500          
-##             Specificity : 1.0000          
-##          Pos Pred Value : 1.0000          
-##          Neg Pred Value : 0.9697          
+##             Sensitivity : 0.9750          
+##             Specificity : 0.9844          
+##          Pos Pred Value : 0.9750          
+##          Neg Pred Value : 0.9844          
 ##              Prevalence : 0.3846          
-##          Detection Rate : 0.3654          
-##    Detection Prevalence : 0.3654          
-##       Balanced Accuracy : 0.9750          
+##          Detection Rate : 0.3750          
+##    Detection Prevalence : 0.3846          
+##       Balanced Accuracy : 0.9797          
 ##                                           
 ##        'Positive' Class : 0               
 ## 
@@ -210,7 +204,7 @@ The model reached an accuracy of ~99%, with a high enough sensitivity and specif
 
 It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction.
 
-## Analysing the importance of features
+### Analysing the importance of features
 
 
 {% highlight r %}
@@ -218,7 +212,7 @@ mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model =
 xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-20](/assets/Rfig/unnamed-chunk-20-1.svg)
+![plot of chunk unnamed-chunk-11](/assets/Rfig/unnamed-chunk-11-1.svg)
 
 The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation betwen the two), as if someone consumes a lot of water, they will have a lot of urine.
 The second more important factors are gender and age.  
