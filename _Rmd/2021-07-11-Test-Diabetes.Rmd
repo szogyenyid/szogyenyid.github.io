@@ -13,11 +13,11 @@ description: Predicting early stage diabetes using XGBoost (logistic gbtrees). T
 author: Daniel Szogyenyi
 ---
 
-# Introducing the dataset
+## Introducing the dataset
 
 The data I used is from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Early+stage+diabetes+risk+prediction+dataset.#). The set has been collected using direct questionnaires from the patients of Sylhet Diabetes Hospital in Sylhet, Bangladesh and approved by a doctor.
 
-# Including libraries
+## Including libraries
 
 ```{r}
 library(readr) # for reading csv
@@ -25,16 +25,16 @@ library(xgboost) # for the prediction model
 library(caret) # for data separation and confusion matrix
 ```
 
-# Reading the file
+## Reading the file
 
 ```{r}
 df <- read_csv("src/diabetes.csv", col_types = cols())
 head(df)
 ```
 
-# Preprocessing
+## Preprocessing
 
-## Cast all types to logical
+### Cast all types to logical
 
 Gender is mutated into "isMale", "Female" leading to FALSE, and "Male" to TRUE.
 
@@ -52,7 +52,7 @@ df$class <- NULL
 df$Gender <- NULL
 ```
 
-## Separate the dataset
+### Separate the dataset
 
 Will use 80% of the data for training, and 20% for testing. "Diabetes" ratio in the subsets remain the same as in the whole set.
 
@@ -63,9 +63,9 @@ trainData <- xgb.DMatrix(data = as.matrix(df[idx,1:16]), label = unlist(df[idx,1
 testData <- xgb.DMatrix(data = as.matrix(df[-idx,1:16]), label = unlist(df[-idx,17]))
 ```
 
-# Creating the model
+## Creating the model
 
-## Set up parameters
+### Set up parameters
 
 ```{r}
 params <- list(
@@ -81,7 +81,7 @@ params <- list(
 )
 ```
 
-## Cross-validate to get the ideal number of iterations
+### Cross-validate to get the ideal number of iterations
 
 ```{r}
 xgbcv <- xgb.cv(
@@ -95,22 +95,22 @@ xgbcv <- xgb.cv(
 )
 ```
 
-## Get the ideal number of iterations
+### Get the ideal number of iterations
 
 ```{r}
 bestIter <- xgbcv$evaluation_log[xgbcv$evaluation_log$test_logloss_mean == min(xgbcv$evaluation_log$test_logloss_mean)]
 print(bestIter)
 ```
 
-## Create the model
+### Create the model
 
 ```{r}
 xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, watchlist = list(test=testData,train=trainData), print_every_n = 10)
 ```
 
-# Evaluation of the model
+## Evaluation of the model
 
-## Prediction on test dataset
+### Prediction on test dataset
 
 Let's predict the test dataset.  
 As logistic regression returns the probability of being true, if the value is larger than 0.5, let's say the person has diabetes.
@@ -120,7 +120,7 @@ xgbpred <- predict(xgb1,testData)
 xgbpred <- as.numeric(xgbpred>0.5)
 ```
 
-## Analysing the confusion matrix
+### Analysing the confusion matrix
 
 ```{r}
 confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
@@ -131,7 +131,7 @@ The model reached an accuracy of ~99%, with a high enough sensitivity and specif
 
 It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction.
 
-## Analysing the importance of features
+### Analysing the importance of features
 
 ```{r}
 mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model = xgb1)
