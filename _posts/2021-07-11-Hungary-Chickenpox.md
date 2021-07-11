@@ -211,25 +211,23 @@ plot(forecast.decomp$trend, ylim=c(200,600), main="Trend of forecasted chickenpo
 grid()
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-2](/assets/Rfig/unnamed-chunk-2-1.svg)
+![plot of chunk unnamed-chunk-7](/assets/Rfig/unnamed-chunk-7-1.svg)
 The trend helps understanding the forecast model: it predicts a constant decrease of the chickenpox cases.
 
 ### Comparison with real data
 
-The true numbers of chickenpox cases in Hungary are available at the website of the [Hungarian Central Statistical Office](https://www.ksh.hu/stadat_files/ege/en/ege0060.html). 
+The true numbers of chickenpox cases in Hungary are available at the website of the [Hungarian Central Statistical Office](https://www.ksh.hu/stadat_files/ege/en/ege0060.html). In this section, I will aggregate the cases by year, and compare the real numbers with the predicted ones.
 
 
 {% highlight r %}
 df_new <- read_delim('src/hungary_chickenpox/chickenpox_2015-2020.csv', ";", col_names=T)
 
-df_new$Period_1 <- factor(df_new$Period_1, levels=c("January","February","March","April","May","June","July","August","September","October","November","December"))
-df_new$Period_1 <- as.numeric(df_new$Period_1)
-
-df_dummy <- data.frame(list(year = df_new$Period, month = as.numeric(df_new$Period_1), cases = df_new$Varicella))
+df_dummy <- data.frame(list(year = df_new$Period, cases = df_new$Varicella))
 df_new <- df_dummy
 rm(list = c("df_dummy"))
 {% endhighlight %}
 
+The case numbers have spaces inside, so I have to remove them:
 
 {% highlight r %}
 df_new$cases <-unlist(lapply(df_new$cases, function(x){
@@ -237,13 +235,11 @@ df_new$cases <-unlist(lapply(df_new$cases, function(x){
 }))
 {% endhighlight %}
 
+Create a new dataframe with the columns `year`, `real` and `forecast`, and store the aggregated numbers by year.
+
 
 {% highlight r %}
 fcYears <- coredata(floor(time(fc$mean)))
-{% endhighlight %}
-
-
-{% highlight r %}
 l <- lapply(unique(df_new$year), function(x){
   fcy <- round(sum(fc$mean[x == fcYears]))
   rey <- sum(df_new[df_new["year"] == x,]$cases)
@@ -253,6 +249,8 @@ l <- lapply(unique(df_new$year), function(x){
 comparisonDf <- data.frame(matrix(unlist(l), nrow=length(l), byrow=TRUE))
 names(comparisonDf) <- c("year","forecast","real")
 {% endhighlight %}
+
+Plot the real and forecasted values.
 
 
 {% highlight r %}
@@ -266,7 +264,7 @@ legend("topright", legend = c("Real","Forecasted"), pch = c(19,17), col=c("black
 grid()
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-7](/assets/Rfig/unnamed-chunk-7-1.svg)
+![plot of chunk unnamed-chunk-11](/assets/Rfig/unnamed-chunk-11-1.svg)
 
 - As seen on this plot, the forecast was under the real value in the first years, and got really close by 2018.  
 - In 2019 the case numbers raised comparing to the previous year, while the model predicts the constant lowering.  
