@@ -8,7 +8,7 @@ tags:
     - imperative
     - programming
 description: What is the difference between declarative and imperative paradigms? What do we have to say to the computer, and what kind of questions do we want to answer? I am giving a short summary of the declarative and imperative approaches.
-last_modified_at: 2021-07-011 12:04:00 +0200
+last_modified_at: 2021-07-11 12:04:00 +0200
 author: Daniel Szogyenyi
 mathjax: true
 math: true
