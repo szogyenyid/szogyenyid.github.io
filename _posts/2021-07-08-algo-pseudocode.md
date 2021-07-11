@@ -8,7 +8,7 @@ tags:
     - algorithm
     - pseudocode
 description: What is a specification and how is it related to an algorithm? By the way, what is an algorithm, and how can we describe one? Is a so-called pseudocode enough to describe an algorithm? All of these questions are answered in today's article!
-# last_modified_at: 2021-07-07 09:40:00 +0200
+last_modified_at: 2021-07-11 12:05:00 +0200
 author: Daniel Szogyenyi
 ---
 
@@ -66,7 +66,15 @@ You have just read the description of an algorithm.
 - The next step is always definite
 - Only needs a finite amount of memory
 
-
+<div style="text-align: center;">
+    <span style="display:block; float:left;">
+        <a href="https://szogyenyid.github.io/learning/2021/07/07/decla-vs-imper.html">Previous part: Declarative vs Imperative</a>
+    </span>
+    &nbsp;
+    <span style="display:block; float:right;">
+        Next part: Coming soon!
+    </span>
+</div>
 
 [^fn-pseudo-dictionary]: [Cambridge Dictionary][cambridge-pseudo]
 
