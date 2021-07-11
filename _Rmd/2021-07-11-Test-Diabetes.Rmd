@@ -1,9 +1,21 @@
 ---
-title: "Predicting type 2 diabetes based on age, gender, and symptoms"
-author: "Dániel Szőgyényi"
-date: "2021.07.02."
-output: html_notebook
+layout: post
+title: "Dataset Analysis: Early stage diabetes risk prediction using XGBoost"
+date: 2021-07-11 11:56:00 +0200
+category: Data Science # Learning | Data Science | Security | Meta | Stories
+tags:
+    - r
+    - xgboost
+    - classification
+    - medical
+description: Predicting early stage diabetes using XGBoost (logistic gbtrees). The used dataset is from UCI Machine Learning Repository.
+# last_modified_at: 2021-07-07 09:40:00 +0200
+author: Daniel Szogyenyi
 ---
+
+# Introducing the dataset
+
+The data I used is from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Early+stage+diabetes+risk+prediction+dataset.#). The set has been collected using direct questionnaires from the patients of Sylhet Diabetes Hospital in Sylhet, Bangladesh and approved by a doctor.
 
 # Including libraries
 
@@ -16,7 +28,7 @@ library(caret) # for data separation and confusion matrix
 # Reading the file
 
 ```{r}
-df <- read_csv("~/Documents/Kaggle_Datasets/diabetes.csv",col_types = cols())
+df <- read_csv("src/diabetes.csv", col_types = cols())
 head(df)
 ```
 
@@ -42,7 +54,7 @@ df$Gender <- NULL
 
 ## Separate the dataset
 
-Will use 80% of the data for training, and 20% for testing. "Diabetes" ratio in the new sets remain the same as in the whole set.
+Will use 80% of the data for training, and 20% for testing. "Diabetes" ratio in the subsets remain the same as in the whole set.
 
 ```{r}
 idx <- caret::createDataPartition(df$Diabetes, p=0.8, list=F)
@@ -53,7 +65,7 @@ testData <- xgb.DMatrix(data = as.matrix(df[-idx,1:16]), label = unlist(df[-idx,
 
 # Creating the model
 
-## Set up parameters and a cross-validation
+## Set up parameters
 
 ```{r}
 params <- list(
@@ -67,7 +79,11 @@ params <- list(
   subsample=1,
   colsample_bytree=1
 )
+```
 
+## Cross-validate to get the ideal number of iterations
+
+```{r}
 xgbcv <- xgb.cv(
   params = params,
   data = trainData,
@@ -79,7 +95,7 @@ xgbcv <- xgb.cv(
 )
 ```
 
-## Let's see the ideal number of iterations
+## Get the ideal number of iterations
 
 ```{r}
 bestIter <- xgbcv$evaluation_log[xgbcv$evaluation_log$test_logloss_mean == min(xgbcv$evaluation_log$test_logloss_mean)]
@@ -89,7 +105,7 @@ print(bestIter)
 ## Create the model
 
 ```{r}
-xgb1 <- xgb.train (params = params, data = trainData, nrounds = bestIter$iter, watchlist = list(val=testData,train=trainData), print_every_n = 10)
+xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, watchlist = list(test=testData,train=trainData), print_every_n = 10)
 ```
 
 # Evaluation of the model
@@ -100,20 +116,20 @@ Let's predict the test dataset.
 As logistic regression returns the probability of being true, if the value is larger than 0.5, let's say the person has diabetes.
 
 ```{r}
-xgbpred <- predict (xgb1,testData)
+xgbpred <- predict(xgb1,testData)
 xgbpred <- as.numeric(xgbpred>0.5)
 ```
 
 ## Analysing the confusion matrix
 
 ```{r}
-confusionMatrix (as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
+confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ```
 The model reached an accuracy of ~99%, with a high enough sensitivity and specifity.  
 1 out of 40 people without diabetes was marked "having diabetes" and  
 0 out of 64 people with diabetes was marked "not having diabetes".  
 
-It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as ill, because further medical examinations can confirm or reject this prediction.
+It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction.
 
 ## Analysing the importance of features
 
