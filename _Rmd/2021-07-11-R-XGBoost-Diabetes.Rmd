@@ -113,7 +113,7 @@ xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, wa
 ### Prediction on test dataset
 
 Let's predict the test dataset.  
-As logistic regression returns the probability of being true, if the value is larger than 0.5, let's say the person has diabetes.
+As logistic regression returns the probability of being true, if the value is larger than 0.5, I should say that the person has diabetes.
 
 ```{r}
 xgbpred <- predict(xgb1,testData)
@@ -138,6 +138,6 @@ mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model =
 xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 ```
 
-The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation betwen the two), as if someone consumes a lot of water, they will have a lot of urine.
+The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation between the two), as if someone consumes a lot of water, they will have a lot of urine.
 The second more important factors are gender and age.  
 Alopecia should be considered as an important factor, and everything in the "Cluster 1" (marked with red) is close to irrelevant.

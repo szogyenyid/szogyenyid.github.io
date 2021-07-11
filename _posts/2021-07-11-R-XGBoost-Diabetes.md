@@ -128,7 +128,7 @@ print(bestIter)
 
 {% highlight text %}
 ##    iter train_logloss_mean train_logloss_std test_logloss_mean test_logloss_std
-## 1:   22           0.025018       0.001302556         0.1084201        0.1041626
+## 1:   27          0.0234301        0.00137925         0.1124822       0.08477984
 {% endhighlight %}
 
 ### Create the model
@@ -141,10 +141,10 @@ xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, wa
 
 
 {% highlight text %}
-## [1]	test-logloss:0.385937	train-logloss:0.380439 
-## [11]	test-logloss:0.094956	train-logloss:0.044778 
-## [21]	test-logloss:0.082849	train-logloss:0.024489 
-## [22]	test-logloss:0.084271	train-logloss:0.023817
+## [1]	test-logloss:0.410762	train-logloss:0.382777 
+## [11]	test-logloss:0.117395	train-logloss:0.047575 
+## [21]	test-logloss:0.105336	train-logloss:0.024972 
+## [27]	test-logloss:0.107779	train-logloss:0.021369
 {% endhighlight %}
 
 ## Evaluation of the model
@@ -152,7 +152,7 @@ xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, wa
 ### Prediction on test dataset
 
 Let's predict the test dataset.  
-As logistic regression returns the probability of being true, if the value is larger than 0.5, let's say the person has diabetes.
+As logistic regression returns the probability of being true, if the value is larger than 0.5, I should say that the person has diabetes.
 
 
 {% highlight r %}
@@ -174,28 +174,28 @@ confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ## 
 ##           Reference
 ## Prediction  0  1
-##          0 39  1
-##          1  1 63
-##                                           
-##                Accuracy : 0.9808          
-##                  95% CI : (0.9323, 0.9977)
-##     No Information Rate : 0.6154          
-##     P-Value [Acc > NIR] : <2e-16          
-##                                           
-##                   Kappa : 0.9594          
-##                                           
-##  Mcnemar's Test P-Value : 1               
-##                                           
-##             Sensitivity : 0.9750          
-##             Specificity : 0.9844          
-##          Pos Pred Value : 0.9750          
-##          Neg Pred Value : 0.9844          
-##              Prevalence : 0.3846          
-##          Detection Rate : 0.3750          
-##    Detection Prevalence : 0.3846          
-##       Balanced Accuracy : 0.9797          
-##                                           
-##        'Positive' Class : 0               
+##          0 40  3
+##          1  0 61
+##                                         
+##                Accuracy : 0.9712        
+##                  95% CI : (0.918, 0.994)
+##     No Information Rate : 0.6154        
+##     P-Value [Acc > NIR] : <2e-16        
+##                                         
+##                   Kappa : 0.9399        
+##                                         
+##  Mcnemar's Test P-Value : 0.2482        
+##                                         
+##             Sensitivity : 1.0000        
+##             Specificity : 0.9531        
+##          Pos Pred Value : 0.9302        
+##          Neg Pred Value : 1.0000        
+##              Prevalence : 0.3846        
+##          Detection Rate : 0.3846        
+##    Detection Prevalence : 0.4135        
+##       Balanced Accuracy : 0.9766        
+##                                         
+##        'Positive' Class : 0             
 ## 
 {% endhighlight %}
 The model reached an accuracy of ~99%, with a high enough sensitivity and specifity.  
@@ -214,6 +214,6 @@ xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 
 ![plot of chunk unnamed-chunk-11](/assets/Rfig/unnamed-chunk-11-1.svg)
 
-The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation betwen the two), as if someone consumes a lot of water, they will have a lot of urine.
+The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation between the two), as if someone consumes a lot of water, they will have a lot of urine.
 The second more important factors are gender and age.  
 Alopecia should be considered as an important factor, and everything in the "Cluster 1" (marked with red) is close to irrelevant.
