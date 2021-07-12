@@ -2,7 +2,8 @@
 layout: post
 title: "Dataset Analysis: Forecasting chickenpox cases in Hungary"
 date: 2021-07-11 16:30:00 +0200
-category: Data Science # Learning | Data Science | Security | Meta | Stories
+categories: # Learning | Data Science | Security | Meta | Stories
+    - Data Science
 tags:
     - r
     - time series
