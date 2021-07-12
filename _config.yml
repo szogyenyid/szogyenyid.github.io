@@ -26,6 +26,7 @@ tags_path: /tags/
 categories_path: /categories/
 google_analytics: G-MPFCMD4MVH
 paginate: 4
+paginate_path: "/p:num/"
 
 # Build settings
 # theme: minima
