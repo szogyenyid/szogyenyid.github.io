@@ -11,6 +11,7 @@ tags:
 description: What is programming? Is it different from coding, or are they the same thing? How do you learn one or the other? I do not have the clearest and and most satisfying answers ever, but I am trying to clarify things in this article.
 last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
+readtime: 4
 ---
 
 ## What is programming?

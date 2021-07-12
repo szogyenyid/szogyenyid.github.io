@@ -10,6 +10,7 @@ tags:
     - classification
     - medical
 description: Predicting early stage diabetes using XGBoost (logistic gbtrees). The used dataset is from UCI Machine Learning Repository.
+readtime: 6
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
 ---

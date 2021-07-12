@@ -13,6 +13,7 @@ last_modified_at: 2021-07-11 12:04:00 +0200
 author: Daniel Szogyenyi
 mathjax: true
 math: true
+readtime: 2
 ---
 
 ## Methods of giving a solution

@@ -11,6 +11,7 @@ tags:
 description: What is a specification and how is it related to an algorithm? By the way, what is an algorithm, and how can we describe one? Is a so-called pseudocode enough to describe an algorithm? All of these questions are answered in today's article!
 last_modified_at: 2021-07-11 12:05:00 +0200
 author: Daniel Szogyenyi
+readtime: 4
 ---
 
 ## Specification to algorithm
