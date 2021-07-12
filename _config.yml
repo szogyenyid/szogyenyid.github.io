@@ -28,7 +28,7 @@ google_analytics: G-MPFCMD4MVH
 
 # Build settings
 # theme: minima
-remote_theme: szogyenyid/monophase@main
+remote_theme: szogyenyid/monophase@breaking-tags-css
 plugins:
   - jekyll-feed
   - jekyll-sitemap
