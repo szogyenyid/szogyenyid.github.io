@@ -2,7 +2,7 @@
 layout: post
 title: "Introduction to Programming #1"
 date: 2021-07-06 21:04:00 +0200
-categories: # Learning | Data Science | Security | Meta | Stories 
+categories: # Learning | Data Science | Security | Meta | Stories
     - learning
 tags:
     - learning
