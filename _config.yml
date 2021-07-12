@@ -30,7 +30,7 @@ paginate_path: "/p:num/"
 
 # Build settings
 # theme: minima
-remote_theme: szogyenyid/monophase@main
+remote_theme: szogyenyid/monophase@readtime
 plugins:
   - jekyll-feed
   - jekyll-sitemap
