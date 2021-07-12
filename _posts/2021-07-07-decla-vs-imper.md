@@ -3,7 +3,7 @@ layout: post
 title: "Introduction to Programming: Declarative vs Imperative"
 date: 2021-07-07 13:57:00 +0200
 categories: # Learning | Data Science | Security | Meta | Stories
-    - Learning
+    - learning
 tags:
     - declarative
     - imperative
