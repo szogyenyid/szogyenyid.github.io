@@ -25,6 +25,7 @@ author: {name: Daniel Szogyenyi, url: "https://szogyenyid.github.io/"}
 tags_path: /tags/
 categories_path: /categories/
 google_analytics: G-MPFCMD4MVH
+paginate: 4
 
 # Build settings
 # theme: minima
