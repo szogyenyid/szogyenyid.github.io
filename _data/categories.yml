@@ -1,7 +1,12 @@
-learning: Learning
-data-science: Data Science
-security: Security
-meta: Meta
-stories: Stories
+- name: Learning
+  slug: learning
+- name: Data Science
+  slug: data-science
+- name: Security
+  slug: securtiy
+- name: Meta
+  slug: meta
+- name: Stories
+  slug: stories
 
   # Learning | Data Science | Security | Meta | Stories
