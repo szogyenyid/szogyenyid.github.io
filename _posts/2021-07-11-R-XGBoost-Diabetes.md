@@ -2,7 +2,7 @@
 layout: post
 title: "Dataset Analysis: Early stage diabetes risk prediction using XGBoost"
 date: 2021-07-11 11:56:00 +0200
-category: Data Science # Learning | Data Science | Security | Meta | Stories
+category: data-science # Learning | Data Science | Security | Meta | Stories
 tags:
     - r
     - xgboost
@@ -11,6 +11,7 @@ tags:
 description: Predicting early stage diabetes using XGBoost (logistic gbtrees). The used dataset is from UCI Machine Learning Repository.
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
+readtime: 6
 ---
 
 ## Introducing the dataset

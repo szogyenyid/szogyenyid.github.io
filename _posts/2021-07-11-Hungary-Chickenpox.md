@@ -2,7 +2,7 @@
 layout: post
 title: "Dataset Analysis: Forecasting chickenpox cases in Hungary"
 date: 2021-07-11 16:30:00 +0200
-category: Data Science # Learning | Data Science | Security | Meta | Stories
+category: data-science # Learning | Data Science | Security | Meta | Stories
 tags:
     - r
     - time series
@@ -12,6 +12,7 @@ tags:
 description: The analysis and ARIMA forecasting of a time series about chickenpox cases in Hungary.
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
+readtime: 10
 ---
 
 ## Introducing the dataset
