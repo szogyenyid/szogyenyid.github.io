@@ -16,7 +16,7 @@ author: Daniel Szogyenyi
 
 ## Introducing the dataset
 
-The dataset I work with is from [UCI Machine Learning Repository](https://archive-beta.ics.uci.edu/ml/datasets/580). It's spatio-temporal dataset of weekly chickenpox cases from Hungary, which consists of a county-level adjacency matrix and time series of the county-level reported cases between 2005 and 2015.  
+The dataset I work with is from [UCI Machine Learning Repository](https://archive-beta.ics.uci.edu/ml/datasets/580). It's spatio-temporal dataset of weekly chickenpox cases from Hungary, which consists of a county-level adjacency matrix and time series of the county-level reported cases between 2005 and 2015.\
 In this analysis I will not use the county adjacency-matrix, as I will work with an aggregated, country-level data.
 
 ```{r chickenpox-libraries}
@@ -35,6 +35,7 @@ df <- read_csv('src/hungary_chickenpox/hungary_chickenpox.csv')
 df$Date <- as.POSIXct(df$Date, format="%d/%m/%Y", tz="CET")
 head(df)
 ```
+
 ### Aggregating
 
 I created an aggregated column using an `apply` function, which simply sums the chickenpox cases for every date.
@@ -62,8 +63,8 @@ grid()
 
 The plot already hints some insights:
 
-- We can see a clear **seasonality**. The peak of the cases is always in the winter, and the minimum of each year is somewhere near summer-fall.
-- A little **decreasing trend** is also visible, it seems like the average case number is decreased by about 500 (in the winters) in 10 years.
+-   We can see a clear **seasonality**. The peak of the cases is always in the winter, and the minimum of each year is somewhere near summer-fall.
+-   A little **decreasing trend** is also visible, it seems like the average case number is decreased by about 500 (in the winters) in 10 years.
 
 ### Pseudo-trend with smoothing
 
@@ -87,6 +88,7 @@ scatter.smooth(
 )
 grid()
 ```
+
 The decreasing attribute of the cases which was suggested by the above plot is clearly visible now. From 2005 to 2015 the "average" number of chickenpox cases dropped by more than 500.
 
 ### Decomposition
@@ -150,8 +152,8 @@ axis(1, 4.35*(0:11)+2, c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","
 grid(nx=12, ny=0, col="gray", lty="solid")
 ```
 
-Looking at one season (year), we can see a strong split in seasonality. From **middle of May to middle of September** the cases are getting constantly **lower**, and they are **increasing from September to December**, and staying near a constant 1.5 from January to May.  
-As known, the majority of chickenpox cases happen between the ages of 3 and 10, meaning the **patients are attending pre-school or school**, where the spread of the virus is helped by the personal contact. This shows a really strong correlation with this seasonality, as May-September - when there are fewer cases - is the time of summer vacation. 
+Looking at one season (year), we can see a strong split in seasonality. From **middle of May to middle of September** the cases are getting constantly **lower**, and they are **increasing from September to December**, and staying near a constant 1.5 from January to May.\
+As known, the majority of chickenpox cases happen between the ages of 3 and 10, meaning the **patients are attending pre-school or school**, where the spread of the virus is helped by the personal contact. This shows a really strong correlation with this seasonality, as May-September - when there are fewer cases - is the time of summer vacation.
 
 ## Forecasting
 
@@ -172,6 +174,7 @@ forecast.decomp <- decompose(fc$mean, "multiplicative")
 plot(forecast.decomp$trend, ylim=c(200,600), main="Trend of forecasted chickenpox cases", ylab="Cases", xlab="Year", lwd=3, col="#0088fa")
 grid()
 ```
+
 The trend helps understanding the forecast model: it predicts a constant decrease of the chickenpox cases.
 
 ### Comparison with real data
@@ -187,6 +190,7 @@ rm(list = c("df_dummy"))
 ```
 
 The case numbers have spaces inside, so I have to remove them:
+
 ```{r string-to-int-chickenpox}
 df_new$cases <-unlist(lapply(df_new$cases, function(x){
   as.numeric(gsub(" ","", x))
@@ -220,8 +224,8 @@ legend("topright", legend = c("Real","Forecasted"), pch = c(19,17), col=c("black
 grid()
 ```
 
-- As seen on this plot, the forecast was under the real value in the first years, and got really close by 2018.  
-- In 2019 the case numbers raised comparing to the previous year, while the model predicts the constant lowering.  
-- In 2020 the chickenpox cases in Hungary drastically dropped, probably due to the home office caused by COVID-19. It was the only year, when the ARIMA forecast a higher value than the real, but I suppose a high leverage of the unexpected pandemic.  
+-   As seen on this plot, the forecast was under the real value in the first years, and got really close by 2018.\
+-   In 2019 the case numbers raised comparing to the previous year, while the model predicts the constant lowering.\
+-   In 2020 the chickenpox cases in Hungary drastically dropped, probably due to the home office caused by COVID-19. It was the only year, when the ARIMA forecast a higher value than the real, but I suppose a high leverage of the unexpected pandemic.
 
 Overall, the forecast model is good enough, as it's following the real trend, and getting closer to the actual data.

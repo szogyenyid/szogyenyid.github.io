@@ -112,7 +112,7 @@ xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, wa
 
 ### Prediction on test dataset
 
-Let's predict the test dataset.  
+Let's predict the test dataset.\
 As logistic regression returns the probability of being true, if the value is larger than 0.5, I should say that the person has diabetes.
 
 ```{r predict-on-text-set}
@@ -125,9 +125,10 @@ xgbpred <- as.numeric(xgbpred>0.5)
 ```{r confusion-matrix}
 confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ```
-The model reached an accuracy of ~96%, with a high enough sensitivity and specifity.  
-1 out of 40 people without diabetes was marked "having diabetes" and  
-3 out of 64 people with diabetes was marked "not having diabetes".  
+
+The model reached an accuracy of \~96%, with a high enough sensitivity and specifity.\
+1 out of 40 people without diabetes was marked "having diabetes" and\
+3 out of 64 people with diabetes was marked "not having diabetes".
 
 It's excellent that the latter number is so low (specificity is 95%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction. 100% specifity would be ideal, so when fine-tuning the model, this is the thing to keep in mind.
 
@@ -138,6 +139,5 @@ mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model =
 xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 ```
 
-The most important factor in the determination of someone having diabetes is polydipsia. Not surprising that polyuria is high too, because of the strong correlation between the two (as if someone consumes a lot of water, they will have a lot of urine).
-The second more important factors are gender and age.  
+The most important factor in the determination of someone having diabetes is polydipsia. Not surprising that polyuria is high too, because of the strong correlation between the two (as if someone consumes a lot of water, they will have a lot of urine). The second more important factors are gender and age.\
 Delayed healing and alopecia may be considered as somehow-important factors, but everything in the "Cluster 1" (marked with red) is close to irrelevant.
