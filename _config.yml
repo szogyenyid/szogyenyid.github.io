@@ -27,6 +27,7 @@ categories_path: /categories/
 google_analytics: G-MPFCMD4MVH
 paginate: 3
 paginate_path: "/p:num/"
+disqus: szogyenyid
 
 # Build settings
 # theme: minima
