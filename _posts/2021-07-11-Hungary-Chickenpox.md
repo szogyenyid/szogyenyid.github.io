@@ -2,8 +2,7 @@
 layout: post
 title: "Dataset Analysis: Forecasting chickenpox cases in Hungary"
 date: 2021-07-11 16:30:00 +0200
-categories: # Learning | Data Science | Security | Meta | Stories 
-    - data-science
+category: Data Science # Learning | Data Science | Security | Meta | Stories
 tags:
     - r
     - time series
@@ -11,7 +10,6 @@ tags:
     - forecasting
     - medical
 description: The analysis and ARIMA forecasting of a time series about chickenpox cases in Hungary.
-readtime: 10
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
 ---
@@ -26,6 +24,7 @@ In this analysis I will not use the county adjacency-matrix, as I will work with
 library(readr) # for reading CSV
 library(lubridate) # for managing times better
 library(forecast) # for forecasting
+library(zoo) # ::coreadata()
 {% endhighlight %}
 
 ## Loading and preprocessing
@@ -83,8 +82,8 @@ grid()
 
 The plot already hints some insights:
 
-- We can see a clear *seasonality*. The peak of the cases is always in the winter, and the minimum of each year is somewhere near summer-fall.
-- A little *decreasing trend* is also visible, it seems like the average case number is decreased by about 500 (in the winters) in 10 years.
+- We can see a clear **seasonality**. The peak of the cases is always in the winter, and the minimum of each year is somewhere near summer-fall.
+- A little **decreasing trend** is also visible, it seems like the average case number is decreased by about 500 (in the winters) in 10 years.
 
 ### Pseudo-trend with smoothing
 
@@ -141,7 +140,7 @@ grid()
 
 ![plot of chunk trendline](/assets/Rfig/trendline-1.svg)
 
-We can definitely see a decreasing trend-line, however, there seems to be some *bi-yearly seasonality* too (look at the waves from 2007 to 2014).
+We can definitely see a decreasing trend-line, however, there seems to be some **bi-yearly seasonality** too (look at the waves from 2007 to 2014).
 
 
 {% highlight r %}
@@ -186,8 +185,8 @@ grid(nx=12, ny=0, col="gray", lty="solid")
 
 ![plot of chunk seasonality](/assets/Rfig/seasonality-1.svg)
 
-Looking at one season (year), we can see a strong split in seasonality. From *middle of May to middle of September* the cases are getting constantly *lower*, and they are *increasing from September to December*, and staying near a constant 1.5 from January to May.  
-As known, the majority of chickenpox cases happen between the ages of 3 and 10, meaning the *patients are attending pre-school or school*, where the spread of the virus is helped by the personal contact. This shows a really strong correlation with this seasonality, as May-September - when there are fewer cases - is the time of summer vacation. 
+Looking at one season (year), we can see a strong split in seasonality. From **middle of May to middle of September** the cases are getting constantly **lower**, and they are **increasing from September to December**, and staying near a constant 1.5 from January to May.  
+As known, the majority of chickenpox cases happen between the ages of 3 and 10, meaning the **patients are attending pre-school or school**, where the spread of the virus is helped by the personal contact. This shows a really strong correlation with this seasonality, as May-September - when there are fewer cases - is the time of summer vacation. 
 
 ## Forecasting
 
@@ -213,7 +212,7 @@ plot(forecast.decomp$trend, ylim=c(200,600), main="Trend of forecasted chickenpo
 grid()
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-7](/assets/Rfig/unnamed-chunk-7-1.svg)
+![plot of chunk forecast-decomp](/assets/Rfig/forecast-decomp-1.svg)
 The trend helps understanding the forecast model: it predicts a constant decrease of the chickenpox cases.
 
 ### Comparison with real data
@@ -266,8 +265,10 @@ legend("topright", legend = c("Real","Forecasted"), pch = c(19,17), col=c("black
 grid()
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-11](/assets/Rfig/unnamed-chunk-11-1.svg)
+![plot of chunk plot-fc-real-compariosn](/assets/Rfig/plot-fc-real-compariosn-1.svg)
 
 - As seen on this plot, the forecast was under the real value in the first years, and got really close by 2018.  
 - In 2019 the case numbers raised comparing to the previous year, while the model predicts the constant lowering.  
-- In 2020 the chickenpox cases in Hungary drastically dropped, probably due to the home office caused by COVID-19. It was the only year, when the ARIMA forecast a higher value than the real, but I suppose a high leverage of the unexpected pandemic.
+- In 2020 the chickenpox cases in Hungary drastically dropped, probably due to the home office caused by COVID-19. It was the only year, when the ARIMA forecast a higher value than the real, but I suppose a high leverage of the unexpected pandemic.  
+
+Overall, the forecast model is good enough, as it's following the real trend, and getting closer to the actual data.

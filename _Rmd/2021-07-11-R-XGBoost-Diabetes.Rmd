@@ -19,7 +19,7 @@ The data I used is from the [UCI Machine Learning Repository](https://archive.ic
 
 ## Including libraries
 
-```{r}
+```{r xgboost-diabetes-libraries}
 library(readr) # for reading csv
 library(xgboost) # for the prediction model
 library(caret) # for data separation and confusion matrix
@@ -27,7 +27,7 @@ library(caret) # for data separation and confusion matrix
 
 ## Reading the file
 
-```{r}
+```{r reading-file}
 df <- read_csv("src/diabetes.csv", col_types = cols())
 head(df)
 ```
@@ -38,7 +38,7 @@ head(df)
 
 Gender is mutated into "isMale", "Female" leading to FALSE, and "Male" to TRUE.
 
-```{r}
+```{r mutating-data}
 df[df == "Yes" | df=="Positive" | df=="Male"] <- "T"
 df[df == "No" | df=="Negative" | df=="Female"] <- "F"
 
@@ -56,7 +56,7 @@ df$Gender <- NULL
 
 Will use 80% of the data for training, and 20% for testing. "Diabetes" ratio in the subsets remain the same as in the whole set.
 
-```{r}
+```{r separating-dataset}
 idx <- caret::createDataPartition(df$Diabetes, p=0.8, list=F)
 # Use every column but "diabetes" as data, and "diabetes" as label.
 trainData <- xgb.DMatrix(data = as.matrix(df[idx,1:16]), label = unlist(df[idx,17]))
@@ -67,7 +67,7 @@ testData <- xgb.DMatrix(data = as.matrix(df[-idx,1:16]), label = unlist(df[-idx,
 
 ### Set up parameters
 
-```{r}
+```{r setup-xgb-params}
 params <- list(
   booster = "gbtree", # gradboosted trees
   objective = "binary:logistic", # as "having diabetes" is a binary attribute, use logistic
@@ -83,7 +83,7 @@ params <- list(
 
 ### Cross-validate to get the ideal number of iterations
 
-```{r}
+```{r xgb-cv}
 xgbcv <- xgb.cv(
   params = params,
   data = trainData,
@@ -97,14 +97,14 @@ xgbcv <- xgb.cv(
 
 ### Get the ideal number of iterations
 
-```{r}
+```{r bestiter}
 bestIter <- xgbcv$evaluation_log[xgbcv$evaluation_log$test_logloss_mean == min(xgbcv$evaluation_log$test_logloss_mean)]
 print(bestIter)
 ```
 
 ### Create the model
 
-```{r}
+```{r train-xgb-model}
 xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, watchlist = list(test=testData,train=trainData), print_every_n = 10)
 ```
 
@@ -115,29 +115,29 @@ xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, wa
 Let's predict the test dataset.  
 As logistic regression returns the probability of being true, if the value is larger than 0.5, I should say that the person has diabetes.
 
-```{r}
+```{r predict-on-text-set}
 xgbpred <- predict(xgb1,testData)
 xgbpred <- as.numeric(xgbpred>0.5)
 ```
 
 ### Analysing the confusion matrix
 
-```{r}
+```{r confusion-matrix}
 confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ```
-The model reached an accuracy of ~99%, with a high enough sensitivity and specifity.  
+The model reached an accuracy of ~96%, with a high enough sensitivity and specifity.  
 1 out of 40 people without diabetes was marked "having diabetes" and  
-0 out of 64 people with diabetes was marked "not having diabetes".  
+3 out of 64 people with diabetes was marked "not having diabetes".  
 
-It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction.
+It's excellent that the latter number is so low (specificity is 95%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction. 100% specifity would be ideal, so when fine-tuning the model, this is the thing to keep in mind.
 
 ### Analysing the importance of features
 
-```{r}
+```{r xgboost-diabetes-params}
 mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model = xgb1)
 xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 ```
 
-The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation between the two), as if someone consumes a lot of water, they will have a lot of urine.
+The most important factor in the determination of someone having diabetes is polydipsia. Not surprising that polyuria is high too, because of the strong correlation between the two (as if someone consumes a lot of water, they will have a lot of urine).
 The second more important factors are gender and age.  
-Alopecia should be considered as an important factor, and everything in the "Cluster 1" (marked with red) is close to irrelevant.
+Delayed healing and alopecia may be considered as somehow-important factors, but everything in the "Cluster 1" (marked with red) is close to irrelevant.

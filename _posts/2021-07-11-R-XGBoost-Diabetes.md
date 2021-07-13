@@ -2,15 +2,13 @@
 layout: post
 title: "Dataset Analysis: Early stage diabetes risk prediction using XGBoost"
 date: 2021-07-11 11:56:00 +0200
-categories: # Learning | Data Science | Security | Meta | Stories 
-    - data-science
+category: Data Science # Learning | Data Science | Security | Meta | Stories
 tags:
     - r
     - xgboost
     - classification
     - medical
 description: Predicting early stage diabetes using XGBoost (logistic gbtrees). The used dataset is from UCI Machine Learning Repository.
-readtime: 6
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
 ---
@@ -130,7 +128,7 @@ print(bestIter)
 
 {% highlight text %}
 ##    iter train_logloss_mean train_logloss_std test_logloss_mean test_logloss_std
-## 1:   27          0.0234301        0.00137925         0.1124822       0.08477984
+## 1:   87          0.0133054      0.0004704235         0.1035381       0.09787715
 {% endhighlight %}
 
 ### Create the model
@@ -143,10 +141,16 @@ xgb1 <- xgb.train(params = params, data = trainData, nrounds = bestIter$iter, wa
 
 
 {% highlight text %}
-## [1]	test-logloss:0.410762	train-logloss:0.382777 
-## [11]	test-logloss:0.117395	train-logloss:0.047575 
-## [21]	test-logloss:0.105336	train-logloss:0.024972 
-## [27]	test-logloss:0.107779	train-logloss:0.021369
+## [1]	test-logloss:0.374550	train-logloss:0.385840 
+## [11]	test-logloss:0.072249	train-logloss:0.048993 
+## [21]	test-logloss:0.052321	train-logloss:0.027817 
+## [31]	test-logloss:0.044564	train-logloss:0.021101 
+## [41]	test-logloss:0.042983	train-logloss:0.017620 
+## [51]	test-logloss:0.038606	train-logloss:0.015633 
+## [61]	test-logloss:0.035977	train-logloss:0.014309 
+## [71]	test-logloss:0.033654	train-logloss:0.013530 
+## [81]	test-logloss:0.034843	train-logloss:0.012535 
+## [87]	test-logloss:0.033825	train-logloss:0.012278
 {% endhighlight %}
 
 ## Evaluation of the model
@@ -176,35 +180,35 @@ confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ## 
 ##           Reference
 ## Prediction  0  1
-##          0 40  3
-##          1  0 61
-##                                         
-##                Accuracy : 0.9712        
-##                  95% CI : (0.918, 0.994)
-##     No Information Rate : 0.6154        
-##     P-Value [Acc > NIR] : <2e-16        
-##                                         
-##                   Kappa : 0.9399        
-##                                         
-##  Mcnemar's Test P-Value : 0.2482        
-##                                         
-##             Sensitivity : 1.0000        
-##             Specificity : 0.9531        
-##          Pos Pred Value : 0.9302        
-##          Neg Pred Value : 1.0000        
-##              Prevalence : 0.3846        
-##          Detection Rate : 0.3846        
-##    Detection Prevalence : 0.4135        
-##       Balanced Accuracy : 0.9766        
-##                                         
-##        'Positive' Class : 0             
+##          0 40  2
+##          1  0 62
+##                                           
+##                Accuracy : 0.9808          
+##                  95% CI : (0.9323, 0.9977)
+##     No Information Rate : 0.6154          
+##     P-Value [Acc > NIR] : <2e-16          
+##                                           
+##                   Kappa : 0.9598          
+##                                           
+##  Mcnemar's Test P-Value : 0.4795          
+##                                           
+##             Sensitivity : 1.0000          
+##             Specificity : 0.9688          
+##          Pos Pred Value : 0.9524          
+##          Neg Pred Value : 1.0000          
+##              Prevalence : 0.3846          
+##          Detection Rate : 0.3846          
+##    Detection Prevalence : 0.4038          
+##       Balanced Accuracy : 0.9844          
+##                                           
+##        'Positive' Class : 0               
 ## 
 {% endhighlight %}
-The model reached an accuracy of ~99%, with a high enough sensitivity and specifity.  
+The model reached an accuracy of ~96%, with a high enough sensitivity and specifity.  
 1 out of 40 people without diabetes was marked "having diabetes" and  
-0 out of 64 people with diabetes was marked "not having diabetes".  
+3 out of 64 people with diabetes was marked "not having diabetes".  
 
-It's excellent that the latter number is 0 (so specificity is 100%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction.
+It's excellent that the latter number is so low (specificity is 95%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction. 100% specifity would be ideal, so when fine-tuning the model, this is the thing to keep in mind.
 
 ### Analysing the importance of features
 
@@ -214,8 +218,8 @@ mat <- xgb.importance(feature_names = colnames(as.matrix(df[idx,1:16])), model =
 xgb.ggplot.importance(importance_matrix = mat, n_clusters = c(4,4))
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-11](/assets/Rfig/unnamed-chunk-11-1.svg)
+![plot of chunk xgboost-diabetes-params](/assets/Rfig/xgboost-diabetes-params-1.svg)
 
-The most important factor in the determination of someone having diabetes is polyuria. Not surprising that polydipsia is high too (because of the strong correlation between the two), as if someone consumes a lot of water, they will have a lot of urine.
+The most important factor in the determination of someone having diabetes is polydipsia. Not surprising that polyuria is high too, because of the strong correlation between the two (as if someone consumes a lot of water, they will have a lot of urine).
 The second more important factors are gender and age.  
-Alopecia should be considered as an important factor, and everything in the "Cluster 1" (marked with red) is close to irrelevant.
+Delayed healing and alopecia may be considered as somehow-important factors, but everything in the "Cluster 1" (marked with red) is close to irrelevant.
