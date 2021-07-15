@@ -9,7 +9,7 @@ tags:
     - classification
     - medical
 description: Predicting early stage diabetes using XGBoost (logistic gbtrees). The used dataset is from UCI Machine Learning Repository.
-# last_modified_at: 2021-07-07 09:40:00 +0200
+last_modified_at: 2021-07-15 12:21:00 +0200
 author: Daniel Szogyenyi
 readtime: 6
 ---
@@ -205,11 +205,11 @@ confusionMatrix(as.factor(xgbpred), as.factor(as.numeric(unlist(df[-idx,17]))))
 ##        'Positive' Class : 0               
 ## 
 {% endhighlight %}
-The model reached an accuracy of ~96%, with a high enough sensitivity and specifity.  
-1 out of 40 people without diabetes was marked "having diabetes" and  
-3 out of 64 people with diabetes was marked "not having diabetes".  
+The model reached an accuracy of ~98%, with a high enough sensitivity and specifity.  
+0 out of 40 people without diabetes was marked "having diabetes" and  
+2 out of 64 people with diabetes was marked "not having diabetes".  
 
-It's excellent that the latter number is so low (specificity is 95%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction. 100% specifity would be ideal, so when fine-tuning the model, this is the thing to keep in mind.
+It's excellent that the latter number is so low (specificity is 97%), as it's better to mark healthy people as having diabetes, because further medical examinations can confirm or reject this prediction. 100% specifity would be ideal, even with the decrease of sensitivity, so when fine-tuning the model, this is the thing to keep in mind.
 
 ### Analysing the importance of features
 
