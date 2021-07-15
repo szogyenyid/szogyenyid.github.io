@@ -376,4 +376,10 @@ grid()
 
 ### Evaluation
 
-Overall, the ARIMA forecast model is far from good, but does a fair enough job in predicting an approximate trend line. Major improvement could be reached by using neural networks, like in [@rozemberczki2021].
+Overall, the ARIMA forecast model is far from good, but does a fair enough job in predicting an approximate trend line. Major improvement could be reached by using neural networks [(Rozemberczki et al. 2021)].
+
+## Reference
+
+<div id="ref-rozemberczki2021" class="csl-entry">
+Rozemberczki, Benedek, Paul Scherer, Oliver Kiss, Rik Sarkar, and Tamas Ferenci. 2021. <span>“Chickenpox Cases in Hungary: A Benchmark Dataset for Spatiotemporal Signal Processing with Graph Neural Networks.”</span> <em>arXiv:2102.08100 [Cs]</em>, February. <a href="http://arxiv.org/abs/2102.08100">http://arxiv.org/abs/2102.08100</a>.
+</div>
