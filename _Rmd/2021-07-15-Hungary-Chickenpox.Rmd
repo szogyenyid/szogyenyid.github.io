@@ -2,7 +2,7 @@
 layout: post
 title: "Dataset Analysis: Forecasting chickenpox cases in Hungary"
 date: 2021-07-15 11:55:00 +0200
-category: Data Science # Learning | Data Science | Security | Meta | Stories
+category: data-science # Learning | Data Science | Security | Meta | Stories
 tags:
     - r
     - time series
@@ -156,7 +156,7 @@ axis(1, 4.35*(0:11)+2, c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","
 grid(nx=12, ny=0, col="gray", lty="solid")
 ```
 
-Looking at one season (year), we can see a strong split in seasonality. From **middle of May to middle of September** the cases are getting constantly **lower**, and they are **increasing from September to December**, and staying near a constant 1.5 from January to May.\
+Looking at one season (year), we can see a strong split inside a season. From **middle of May to middle of September** the cases are getting constantly **lower**, and they are **increasing from September to December**, and staying near a constant 1.5 from January to May.\
 As known, the majority of chickenpox cases happen between the ages of 3 and 10, meaning the **patients are attending pre-school or school**, where the spread of the virus is helped by the personal contact. This shows a really strong correlation with this seasonality, as May-September - when there are fewer cases - is the time of summer vacation.
 
 ## Forecasting
@@ -187,7 +187,7 @@ The trend helps understanding the forecast model: it predicts a constant decreas
 
 #### Preparing the datasets
 
-The true numbers of chickenpox cases in Hungary are available at the website of the [Hungarian Central Statistical Office](https://www.ksh.hu/stadat_files/ege/en/ege0060.html). In this section, I will aggregate the cases by year, and compare the real numbers with the predicted ones.
+The true numbers of chickenpox cases in Hungary are available at the website of the [Hungarian Central Statistical Office](https://www.ksh.hu/stadat_files/ege/en/ege0060.html). In this section, I will compare the real numbers with the predicted ones.
 
 ```{r load-real-chickenpox-data}
 df_new <- read_delim('src/hungary_chickenpox/chickenpox_2015-2020.csv', ";", col_names=T)
@@ -242,7 +242,7 @@ plot(
   main="Forecast and real chickenpox cases by month from 2015 to 2020", xlab="Year", ylab="Cases"
 )
 lines(fc_df$date, fc_df$cases, type="l", pch=17, col="red", cex=1.25)
-legend("topright", legend = c("Real","Forecast"), pch = c(19,17), col=c("black", "red"))
+legend("topright", legend = c("Real","Forecast"), pch = c(19,19), col=c("black", "red"))
 grid(nx=0, ny=NULL)
 ```
 
@@ -284,6 +284,7 @@ grid(nx=0, ny=NULL)
 | 12 months        | 41.31% |
 | 24 months        | 48.74% |
 | 36 months        | 50.43% |
+| 48 months        | 53.58% |
 
 As seen, the error of the forecast is increasing in a root-like manner, starting from \~20%.
 
@@ -322,4 +323,10 @@ grid()
 
 ### Evaluation
 
-Overall, the ARIMA forecast model is far from good, but does a fair enough job in predicting an approximate trend line. Major improvement could be reached by using neural networks, like in [@rozemberczki2021].
+Overall, the ARIMA forecast model is far from good, but does a fair enough job in predicting an approximate trend line. Major improvement could be reached by using neural networks (Rozemberczki et al. 2021).
+
+## Reference
+
+<div id="ref-rozemberczki2021" class="csl-entry">
+Benedek Rozemberczki, Paul Scherer, Oliver Kiss, Rik Sarkar, and Tamas Ferenci. 2021. <span>“Chickenpox Cases in Hungary: A Benchmark Dataset for Spatiotemporal Signal Processing with Graph Neural Networks.”</span> <em>arXiv:2102.08100 [Cs]</em>, February. <a target="_blank" href="http://arxiv.org/abs/2102.08100">http://arxiv.org/abs/2102.08100</a>.
+</div>
