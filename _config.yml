@@ -28,6 +28,7 @@ google_analytics: G-MPFCMD4MVH
 paginate: 3
 paginate_path: "/p:num/"
 disqus: szogyenyid
+google-site-verification: l78-uzYf7kerW-onnwE6iDMFszAokZoxn2rcPAOIPRM
 description: The simple blog of Daniel Szogyenyi, a Hungarian developer. Posts about Data Science, beginner beginner learning materials for programming, R tips & tricks, privacy, and any random thought from his mind.
 
 # Build settings
