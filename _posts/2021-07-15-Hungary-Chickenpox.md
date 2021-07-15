@@ -287,7 +287,7 @@ plot(
   main="Forecast and real chickenpox cases by month from 2015 to 2020", xlab="Year", ylab="Cases"
 )
 lines(fc_df$date, fc_df$cases, type="l", pch=17, col="red", cex=1.25)
-legend("topright", legend = c("Real","Forecast"), pch = c(19,17), col=c("black", "red"))
+legend("topright", legend = c("Real","Forecast"), pch = c(19,19), col=c("black", "red"))
 grid(nx=0, ny=NULL)
 {% endhighlight %}
 
