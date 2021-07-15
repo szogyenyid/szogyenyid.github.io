@@ -228,7 +228,7 @@ The trend helps understanding the forecast model: it predicts a constant decreas
 
 #### Preparing the datasets
 
-The true numbers of chickenpox cases in Hungary are available at the website of the [Hungarian Central Statistical Office](https://www.ksh.hu/stadat_files/ege/en/ege0060.html). In this section, I will aggregate the cases by year, and compare the real numbers with the predicted ones.
+The true numbers of chickenpox cases in Hungary are available at the website of the [Hungarian Central Statistical Office](https://www.ksh.hu/stadat_files/ege/en/ege0060.html). In this section, I will compare the real numbers with the predicted ones.
 
 
 {% highlight r %}
