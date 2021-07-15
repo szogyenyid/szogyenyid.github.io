@@ -31,7 +31,7 @@ disqus: szogyenyid
 
 # Build settings
 # theme: minima
-remote_theme: szogyenyid/monophase@readtime
+remote_theme: szogyenyid/monophase@main
 plugins:
   - jekyll-feed
   - jekyll-sitemap
