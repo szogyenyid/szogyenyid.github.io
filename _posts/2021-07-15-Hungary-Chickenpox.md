@@ -191,7 +191,7 @@ grid(nx=12, ny=0, col="gray", lty="solid")
 
 ![plot of chunk seasonality](/assets/Rfig/seasonality-1.svg)
 
-Looking at one season (year), we can see a strong split in seasonality. From **middle of May to middle of September** the cases are getting constantly **lower**, and they are **increasing from September to December**, and staying near a constant 1.5 from January to May.\
+Looking at one season (year), we can see a strong split inside a season. From **middle of May to middle of September** the cases are getting constantly **lower**, and they are **increasing from September to December**, and staying near a constant 1.5 from January to May.\
 As known, the majority of chickenpox cases happen between the ages of 3 and 10, meaning the **patients are attending pre-school or school**, where the spread of the virus is helped by the personal contact. This shows a really strong correlation with this seasonality, as May-September - when there are fewer cases - is the time of summer vacation.
 
 ## Forecasting
