@@ -1,7 +1,7 @@
 # render_post.R
 # R script to convert RMarkdown into Jekyll markdown
 # Credit: http://brooksandrew.github.io/simpleblog/articles/blogging-with-r-markdown-and-jekyll-using-knitr/
-
+rm(list=ls())
 KnitPost <- function(site.path='~/blog/szogyenyid.github.io/', overwriteAll=F, overwriteOne=NULL) {
   if(!'package:knitr' %in% search()) suppressWarnings(library(knitr))
   
