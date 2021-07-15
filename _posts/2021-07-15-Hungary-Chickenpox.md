@@ -334,6 +334,7 @@ grid(nx=0, ny=NULL)
 | 12 months        | 41.31% |
 | 24 months        | 48.74% |
 | 36 months        | 50.43% |
+| 48 months        | 53.58% |
 
 As seen, the error of the forecast is increasing in a root-like manner, starting from \~20%.
 
