@@ -376,7 +376,7 @@ grid()
 
 ### Evaluation
 
-Overall, the ARIMA forecast model is far from good, but does a fair enough job in predicting an approximate trend line. Major improvement could be reached by using neural networks [(Rozemberczki et al. 2021)].
+Overall, the ARIMA forecast model is far from good, but does a fair enough job in predicting an approximate trend line. Major improvement could be reached by using neural networks (Rozemberczki et al. 2021).
 
 ## Reference
 
