@@ -9,7 +9,7 @@ tags:
     - decomposition
     - forecasting
     - medical
-description: The analysis and ARIMA forecasting of a time series about chickenpox cases in Hungary.
+description: The analysis and ARIMA forecasting of a time series from 2005 to 2015 about chickenpox cases in Hungary, and the evaluation of the forecast model based on data from Hungarian Central Statistical Office.
 # last_modified_at: 2021-07-07 09:40:00 +0200
 author: Daniel Szogyenyi
 readtime: 12
