@@ -33,7 +33,7 @@ However, we encounter a ton of problems which share similarities or even the exa
 
 > **pseudo-** <span>/sjuː.dəʊ-/ • prefix</span><br>1\. pretended and not real[^fn-pseudo-dictionary]
 
-A pseudocode looks like a piece of code, but no interpreter or compiler on your computer will be able to run it. It's written for your brain in a human language to better understand the logic behind and algorithm.
+A pseudocode looks like a piece of code, but no interpreter or compiler on your computer will be able to run it. It's written for your brain in a human language to better understand the logic behind an algorithm.
 
 Let's see a pseudocode for getting the pass ratio of an exam.  
 
