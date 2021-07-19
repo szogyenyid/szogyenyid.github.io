@@ -370,8 +370,8 @@ grid()
 
 ![plot of chunk plot-fc-real-compariosn](/assets/Rfig/plot-fc-real-compariosn-1.svg)
 
--   As seen on this plot, the forecast was under the real value in the first years, and got really close by 2018.\
--   In 2019 the case numbers raised comparing to the previous year, while the model predicts the constant lowering.\
+-   As seen on this plot, the forecast was under the real value in the first years, and got really close by 2018.
+-   In 2019 the case numbers raised comparing to the previous year, while the model predicts the constant lowering.
 -   In 2020 the chickenpox cases in Hungary drastically dropped, probably due to the home office caused by COVID-19. It was the only year, when the ARIMA forecast a higher value than the real, but I suppose a high leverage of the unexpected pandemic.
 
 ### Evaluation
