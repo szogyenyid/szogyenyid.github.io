@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: szogyenyid.github.io
+Token: af8c84e5170cba2b73a99a1222d633c3764e0360de89d9e1b7cfd33cf46d62ee
