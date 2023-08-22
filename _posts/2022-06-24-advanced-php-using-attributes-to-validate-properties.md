@@ -10,7 +10,7 @@ tags:
     - php
     - attributes
     - php8
-description: # TODO
+description: Explore PHP8 attributes for improved validation. Learn through practical property validation examples and custom attributes. Gain insights into implementing validator interfaces for data integrity enhancement.
 last_modified_at: 2022-06-25 18:49:00 +0200
 author: Daniel Szogyenyi
 readtime: 4

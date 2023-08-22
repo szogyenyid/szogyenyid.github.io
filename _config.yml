@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Daniel Szogyenyi - blog
+title: Daniel Szogyenyi
 #tagline: Another developer's blog
 lang: en
 author: {name: Daniel Szogyenyi, url: "https://szogyenyid.github.io/"}
