@@ -8,5 +8,7 @@
   slug: meta
 - name: Stories
   slug: stories
+- name: PHP
+  slug: php
 
   # Learning | Data Science | Security | Meta | Stories
