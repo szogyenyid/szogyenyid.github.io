@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Daniel Szogyenyi
-#tagline: Another developer's blog
+tagline: Another developer's blog
 lang: en
 author: {name: Daniel Szogyenyi, url: "https://szogyenyid.github.io/"}
 tags_path: /tags/
@@ -29,7 +29,7 @@ paginate: 3
 paginate_path: "/p:num/"
 disqus: szogyenyid
 google_site_verification: l78-uzYf7kerW-onnwE6iDMFszAokZoxn2rcPAOIPRM
-description: The simple blog of Daniel Szogyenyi, a Hungarian developer. Posts about Data Science, beginner beginner learning materials for programming, R tips & tricks, privacy, and any random thought from his mind.
+description: The blog of Daniel Szogyenyi. Posts about PHP, privacy, and any random thought from his mind.
 
 # Build settings
 # theme: minima
