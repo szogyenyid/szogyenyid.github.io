@@ -13,14 +13,14 @@ tags:
     - iac
     - tools
 description: This article outlines the process of establishing a local development environment using Tilt and Kubernetes. It covers the setup of PHP, Go, and React applications, along with services like MySQL and phpMyAdmin, highlighting efficient containerization and automation methods for smoother development workflows.
-last_modified_at: 2022-08-23 19:00:00 +0200
+#last_modified_at: 2022-08-23 19:00:00 +0200
 author: Daniel Szogyenyi
 readtime: 45
 ---
 
 ## Introduction
 
-Kubernetes (from now on: K8s) has become a foundational technology for managing containerized applications, offering scalability and flexibility. However, local development environments that mirror the intricacies of a production K8s cluster can be intricate to set up. This is where Tilt comes in.
+Kubernetes has become a foundational technology for managing containerized applications, offering scalability and flexibility. However, local development environments that mirror the intricacies of a production K8s cluster can be intricate to set up. This is where Tilt comes in.
 
 Tilt is a valuable tool that simplifies development by automating application deployment on Kubernetes, fostering faster iteration and testing. This guide delves into the process of establishing a local development environment using Tilt and Kubernetes. By embracing this approach, developers can work more effectively, validate changes quickly, and ensure smoother transitions from development to production. Join us in exploring the synergies of Tilt and Kubernetes for a seamless local development experience.
 
