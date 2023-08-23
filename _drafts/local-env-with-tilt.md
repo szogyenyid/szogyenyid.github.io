@@ -427,4 +427,141 @@ docker_build('dummy-php-app-image', 'dummy-php-app', live_update=[
 ```
 Tilt now should build the Docker image from the `dummy-php-app` directory instead of the project root. This change ensures that the Docker image is built from the correct context, including the `src/` directory and `Dockerfile`. Live update is also configured to sync the valid `src/` directory to the container's web directory.
 
+## Adding a Go service for string reversal
+
+In this chapter, we expand our local development environment by incorporating a Go-based API service that can reverse strings. This addition diversifies our environment and showcases the versatility of our setup. Let's explore how we've seamlessly integrated this Go service into our project.
+
+### Creating a Dockerized go service
+
+After creating a new directory (eg. go-reverser) in the project root, initiate a new Go project using `go mod init` and create a simple API endpoint that performs string reversal. I used Gorilla Mux to make this process easy.
+
+To use the service, it's necessary to Dockerize it, here's the Dockerfile I created:
+
+```Dockerfile
+FROM golang:1.21
+WORKDIR /app
+ADD ./src/ .
+RUN go install ./
+ENTRYPOINT php-with-tilt
+```
+
+### go-reverser Kubernetes configuration (k8s/go-reverser.yaml)
+
+Let's introduce a Kubernetes configuration file to define the deployment of the Go service container within the cluster, and make it accessible on port 8001.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-reverser
+  labels:
+    app: go-reverser
+spec:
+  selector:
+    matchLabels:
+      app: go-reverser
+  template:
+    metadata:
+      labels:
+        app: go-reverser
+    spec:
+      containers:
+      - name: go-reverser
+        image: go-reverser-image
+        ports:
+        - containerPort: 8001
+```
+
+### Updating Tiltfile
+
+The last step to add the new service to out Tilt environment is to update the `Tiltfile`:
+
+```python
+## Reverser service
+docker_build('go-reverser-image', 'go-reverser')
+k8s_yaml('k8s/go-reverser.yaml')
+k8s_resource('go-reverser', port_forwards=8001, labels=["backend"])
+```
+
+By following these steps, we've successfully integrated the Go service into our local development environment, extending its capabilities and showcasing the adaptability of our setup.
+
+## Introducing a Simple React frontend
+
+In this chapter, we expand the horizons of our local development environment by integrating a simple React app. This addition not only diversifies the types of services we're working with but also showcases the flexibility of our setup. Let's dive into the steps we've taken to seamlessly incorporate this React app into our project.
+
+### Creating and Dockerizing a React app
+
+We initiated a new React app using the command `npx create-react-app frontend`. This command sets up the necessary files and directory structure for a basic React application.
+
+To containerize the React app, we created a `Dockerfile` within the `frontend/` directory. This file outlines the process for building the Docker image for the React app.
+
+```Dockerfile
+FROM node:20.5.1-alpine
+
+WORKDIR /src
+
+ADD package.json package.json
+RUN npm install
+
+ADD . /src
+
+ENTRYPOINT npm start
+```
+
+### Frontend Kubernetes configuration (k8s/frontend.yaml)
+
+We introduced a Kubernetes configuration file to define the deployment of the React app within the cluster.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-container
+          image: frontend-image
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 8888
+      targetPort: 3000
+```
+These Kubernetes configuration files ensure that the React app is deployed and accessible within the cluster. The service definition (`frontend-service`) exposes the app to the cluster's network.
+
+### Updating the Tiltfile
+
+The Tiltfile has been enhanced to facilitate the build, deployment, and live updates of the React app.
+
+```python
+docker_build('frontend-image', 'frontend',
+  live_update=[
+    fall_back_on(['frontend/package.json', 'frontend/package-lock.json']),
+    sync('frontend', '/src'),
+  ])
+k8s_yaml('k8s/frontend.yaml')
+k8s_resource('frontend', port_forwards=8888, labels=["frontend"])
+```
+
+#### Understanding `fall_back_on()`
+
+One notable addition in the Tiltfile is the use of `fall_back_on()`. This function identifies specific files (`frontend/package.json` and `frontend/package-lock.json`) that, when changed, require a full rebuild of the Docker image. This optimization prevents unnecessary full rebuilds and enhances the speed of the development process.
 
