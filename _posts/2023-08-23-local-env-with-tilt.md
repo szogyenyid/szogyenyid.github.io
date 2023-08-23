@@ -2,7 +2,9 @@
 layout: post
 title: "Building a Robust Local Development Environment with Tilt and Kubernetes: A Comprehensive Guide"
 date: 2022-08-23 19:00:00 +0200
-category: learning, devops
+categories:
+    - learning
+    - devops
 tags:
     - development
     - devops
@@ -13,7 +15,7 @@ tags:
 description: This article outlines the process of establishing a local development environment using Tilt and Kubernetes. It covers the setup of PHP, Go, and React applications, along with services like MySQL and phpMyAdmin, highlighting efficient containerization and automation methods for smoother development workflows.
 last_modified_at: 2022-08-23 19:00:00 +0200
 author: Daniel Szogyenyi
-readtime: 666
+readtime: 45
 ---
 
 ## Introduction
