@@ -20,9 +20,9 @@ readtime: 45
 
 ## Introduction
 
-Kubernetes has become a foundational technology for managing containerized applications, offering scalability and flexibility. However, local development environments that mirror the intricacies of a production K8s cluster can be intricate to set up. This is where Tilt comes in.
+Kubernetes has become a foundational technology for managing containerized applications, offering scalability and flexibility. However, local development environments that mirror the intricacies of a production K8s cluster can be challenging to set up. This is where Tilt comes in.
 
-Tilt is a valuable tool that simplifies development by automating application deployment on Kubernetes, fostering faster iteration and testing. This guide delves into the process of establishing a local development environment using Tilt and Kubernetes. By embracing this approach, developers can work more effectively, validate changes quickly, and ensure smoother transitions from development to production. Join us in exploring the synergies of Tilt and Kubernetes for a seamless local development experience.
+Tilt is a valuable tool that simplifies development by automating application deployment on Kubernetes, fostering faster iteration and testing. This guide delves into the process of establishing a local development environment using Tilt and Kubernetes. By embracing this approach, developers can work more effectively, validate changes quickly, and ensure smoother transitions from development to production. Join me in exploring the synergies of Tilt and Kubernetes for a seamless local development experience.
 
 ## Prerequisites
 
@@ -30,15 +30,15 @@ Before we dive into setting up the local development environment using Tilt and 
 
 ### Installing Docker
 
-Docker is a fundamental tool for containerization, allowing you to package applications and their dependencies into isolated environments. Visit the official [Docker website](https://www.docker.com/products/docker-desktop) to download and install Docker Desktop for your operating system.
+Docker is a fundamental tool for containerization, allowing you to package applications and their dependencies into isolated environments. Visit the official [Docker website](https://www.docker.com/products/docker-desktop) to download and install Docker Desktop (or engine) for your operating system.
 
 ### Installing kubectl
 
-kubectl is the command-line tool used to interact with Kubernetes clusters. To install kubectl, you can follow the installation instructions provided in the official Kubernetes documentation: [Install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+Kubectl is the command-line tool used to interact with Kubernetes clusters. To install kubectl, you can follow the installation instructions provided in the official Kubernetes documentation: [install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 ### Installing ctlptl
 
-ctlptl simplifies the management of local Kubernetes clusters. You can install ctlptl by following the instructions on the GitHub repository: [ctlptl Installation](https://github.com/tilt-dev/ctlptl#installation).
+ctlptl simplifies the management of local Kubernetes clusters. You can install ctlptl by following the instructions on the GitHub repository: [ctlptl Installation](https://github.com/tilt-dev/ctlptl#how-do-i-install-it).
 
 ### Installing Tilt
 
