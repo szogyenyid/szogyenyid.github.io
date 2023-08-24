@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Building a Robust Local Development Environment with Tilt and Kubernetes: A Comprehensive Guide"
+title: "Building a robust local development environment with Tilt and Kubernetes: a comprehensive example"
 date: 2022-08-23 19:00:00 +0200
 categories:
     - learning
@@ -54,7 +54,7 @@ To start building our local development environment with Tilt and Kubernetes, le
 
 For our local Kubernetes cluster, we'll leverage Kind (Kubernetes in Docker) and the ctlptl-registry for container image management.
 
-To set up the cluster, execute the following ctlptl script:
+To set up the cluster, execute the following shell script:
 
 ```bash
 PROJECT_NAME="my-local-project"
@@ -65,11 +65,11 @@ Here's an overview of the components:
 - **Kind**: Run lightweight Kubernetes clusters within Docker containers for development and testing.
 - **ctlptl-registry**: Use the ctlptl-registry as a local container image registry, enabling faster image retrieval during development.
 
-Replace `$PROJECT_NAME` with your desired project name.
+Replace the value of `$PROJECT_NAME` with your desired project name.
 
 With your local Kubernetes cluster ready, you're well-equipped to proceed with creating an efficient local development environment.
 
-Feel free to establish your local Kubernetes cluster using Kind and the ctlptl-registry. This step is crucial for setting the stage for a smooth development experience.
+This step is crucial for setting the stage for a smooth development experience.
 
 ## Running a simple PHP server
 
@@ -82,7 +82,7 @@ To begin, let's organize our project directory and create some empty files. Here
 ```
 project-root/
 |-- k8s/
-|   |-- learning-tilt.yaml
+|   |-- dummy-php-app.yaml
 |-- src/
 |   |-- index.php
 |-- Dockerfile
@@ -90,7 +90,7 @@ project-root/
 
 ```
 
-- `k8s/`: The Kubernetes manifest directory contains the Kubernetes configuration file for your application. In this case, it's the learning-tilt.yaml file.
+- `k8s/`: The Kubernetes manifest directory contains the Kubernetes configuration file for your application. In this case, it's the dummy-php-app.yaml file.
 
 - `src/`: This directory holds your PHP code. In this example, there's an index.php file, containing a "Hello World!" message.
 
@@ -110,7 +110,7 @@ FROM php:8.2-apache
 # Copy your PHP code into the container's web directory
 COPY src/ /var/www/html/
 
-# Install the mysqli extension
+# Install the pdo_mysql extension
 RUN docker-php-ext-install pdo_mysql
 
 # Modify Apache configuration to use port 8000
@@ -213,7 +213,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               value: sup3rs3cr3tp4ss
             - name: MYSQL_DATABASE
-              value: php_with_tilt
+              value: learning_tilt
             - name: MYSQL_USER
               value: myUser
             - name: MYSQL_PASSWORD
@@ -295,7 +295,7 @@ env:
   - name: MYSQL_PASSWORD
     value: myPass
   - name: MYSQL_DATABASE
-    value: php_with_tilt
+    value: learning_tilt
 ```
 
 By specifying these configurations, the `k8s/dummy-php-app.yaml` file ensures that the PHP application container is seamlessly integrated with the MySQL database instance, facilitating effective and secure interaction.
@@ -433,6 +433,55 @@ docker_build('dummy-php-app-image', 'dummy-php-app', live_update=[
 ])
 ```
 Tilt now should build the Docker image from the `dummy-php-app` directory instead of the project root. This change ensures that the Docker image is built from the correct context, including the `src/` directory and `Dockerfile`. Live update is also configured to sync the valid `src/` directory to the container's web directory.
+
+## Moving the SQL init script to a separate file
+
+In this chapter, we further refine our local development environment by implementing improvements related to database initialization and management. We focus on enhancing the separation of concerns and maintaining a well-organized project structure. Let's delve into the modifications we've made to ensure better management of our SQL initialization script.
+
+- To start, create a `mysql` subdirectory withing the `k8s` directory. This will house the MySQL-related configuration, so move `mysql.yaml` into here.
+- Remove the `ConfigMap` part from `mysql.yaml`, and put the init commands from there into an `init.sql` file:
+
+```sql
+-- Tables
+
+CREATE TABLE IF NOT EXISTS example_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+-- Data
+
+INSERT INTO example_table (name) VALUES ('John Doe');
+```
+
+- The magic: we've introduced a new file named `kustomization.yaml` within the `k8s/mysql` directory. This file is used to define custom configurations for our Kubernetes resources, including the `init.sql` file.
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - mysql.yaml
+
+configMapGenerator:
+- name: init-sql-configmap
+  files:
+  - init.sql
+
+generatorOptions:
+  disableNameSuffixHash: true
+```
+
+- Update the Tiltfile. Fortunately, Tilt support kustomize, so it's as easy as changing the lines handling MySQL to these:
+
+```python
+k8s_yaml(kustomize('k8s/mysql'))
+k8s_resource('mysql', labels=["infra"])
+```
+
+By using Kustomize, we can centralize common configurations, eliminate duplication, and tailor resource settings as needed. As demonstrated in this chapter, we've utilized Kustomize to manage our MySQL initialization script in a dedicated directory. The kustomization.yaml file within this directory defines how our init.sql script is incorporated into the MySQL configuration.
+
+Incorporating Kustomize not only improves the maintainability and readability of our Kubernetes configurations but also makes our local development environment more flexible and adaptable to changes. As we continue to explore and optimize our development environment, we'll harness the power of tools like Kustomize to create an environment that promotes efficiency, reliability, and scalability.
 
 ## Adding a Go service for string reversal
 
@@ -572,3 +621,12 @@ k8s_resource('frontend', port_forwards=8888, labels=["frontend"])
 
 One notable addition in the Tiltfile is the use of `fall_back_on()`. This function identifies specific files (`frontend/package.json` and `frontend/package-lock.json`) that, when changed, require a full rebuild of the Docker image. This optimization prevents unnecessary full rebuilds and enhances the speed of the development process.
 
+## Summing it up
+
+This guide explores the synergy between Tilt and Kubernetes, offering developers a robust solution for building, testing, and iterating on containerized applications. It introduces Kubernetes as a transformative technology and showcases Tilt as a solution for local development challenges.
+
+The guide provides step-by-step instructions for setting up prerequisites like Docker, kubectl, ctlptl, and Tilt. It then demonstrates how to create a local Kubernetes cluster using Kind and ctlptl-registry, laying the foundation for integrating services.
+
+The article incrementally adds services like a PHP server, MySQL database, phpMyAdmin, Go service, and React frontend. It explains Dockerization, Kubernetes configurations, and Tiltfile updates for each service, emphasizing flexibility and best practices.
+
+A key highlight is the introduction of Kustomize for centralized configuration management, enhancing maintainability. Overall, the guide equips developers with the tools to optimize their local development environment using Tilt and Kubernetes.
