@@ -62,7 +62,7 @@ ctlptl create cluster kind --registry=ctlptl-registry --name=kind-$PROJECT_NAME
 ```
 
 Use **Terminal** on macOS or Linux, or **Git Bash** on Windows to run the script.
-{ .info-blue }
+{: .info-blue }
 
 Here's an overview of the components:
 - **Kind**: Run lightweight Kubernetes clusters within Docker containers for development and testing.
