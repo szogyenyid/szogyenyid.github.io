@@ -1,6 +1,9 @@
 - title: Email
   url: mailto:szogyenyid@pm.me
   icon: fas fa-envelope
+- title: Pubkey
+  url: https://szogyenyid.github.io/assets/szogyenyid.asc
+  icon: fas fa-key
 - title: LinkedIn
   url: https://www.linkedin.com/in/szogyenyid/
   icon: fab fa-linkedin
