@@ -13,9 +13,9 @@ tags:
     - automation
     - productivity
 description: "Unearth the capabilities of Git hooks, the often-overlooked automation feature in Git. This article delves into the world of Git hooks, explaining how they can be harnessed to enforce coding standards, maintain commit message consistency, and optimize your development process. Explore practical examples of Git hooks' applications and elevate your collaborative coding experience."
-#last_modified_at: 2023-08-23 19:00:00 +0200
+last_modified_at: 2023-09-08 10:38:00 +0200
 author: Daniel Szogyenyi
-readtime: 20
+readtime: 15
 ---
 
 ## Introduction
