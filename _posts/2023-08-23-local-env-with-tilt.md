@@ -56,7 +56,7 @@ For our local Kubernetes cluster, we'll leverage Kind (Kubernetes in Docker) and
 
 To set up the cluster, execute the following shell script:
 
-```bash
+```shell
 PROJECT_NAME="my-local-project"
 ctlptl create cluster kind --registry=ctlptl-registry --name=kind-$PROJECT_NAME
 ```
