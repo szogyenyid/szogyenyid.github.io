@@ -20,7 +20,7 @@
 
 title: Daniel Szogyenyi
 tagline: powered by curiosity and coffee
-icon: https://szogyenyid.dev/img/favicon.png
+icon: /assets/favicon.png
 lang: en
 author: {name: Daniel Szogyenyi, url: "https://szogyenyid.github.io/"}
 tags_path: /tags/
