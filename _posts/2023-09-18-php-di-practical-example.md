@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mastering Dependency Injection in PHP with PHP-DI: A practical example"
-date: 2023-09-18 17:00:00 +0200
+date: 2023-09-18 16:55:00 +0200
 categories:
     - php
     - learning
