@@ -12,7 +12,7 @@ tags:
     - dependency-injection
     - php-di
     - design-patterns
-description: "Discover the world of Dependency Injection (DI) in PHP through an example. From crafting a basic "Hello World" script to mastering advanced techniques, you'll see how DI enhances flexibility, maintainability, and code organization with the help of PHP-DI, a powerful dependency injection container. Whether you're a PHP beginner or an experienced developer, this guide equips you to create clean, modular, and efficient PHP applications."
+description: "Discover the world of Dependency Injection (DI) in PHP through an example. From crafting a basic Hello World script to mastering advanced techniques, you'll see how DI enhances flexibility, maintainability, and code organization with the help of PHP-DI, a powerful dependency injection container. Whether you're a PHP beginner or an experienced developer, this guide equips you to create clean, modular, and efficient PHP applications."
 #last_modified_at: 2023-09-08 10:38:00 +0200
 author: Daniel Szogyenyi
 readtime: 10
