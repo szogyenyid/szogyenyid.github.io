@@ -14,3 +14,5 @@
   slug: devops
 - name: Development
   slug: development
+- name: Security
+  slug: security
