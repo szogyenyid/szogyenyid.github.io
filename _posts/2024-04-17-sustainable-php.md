@@ -105,7 +105,7 @@ They not only provide guidelines for writing energy-efficient PHP code but also 
 
 By adhering to ecoCode's principles and leveraging its resources, PHP developers can enhance the sustainability of their codebase, contributing to a more energy-efficient digital ecosystem.
 
-## Conclusion and Call to Action
+## Conclusion
 
 In conclusion, sustainable coding practices on the backend embody a commitment to environmental responsibility and resource optimization. By implementing energy-efficient techniques and utilizing tools like Joulenne and ecoCode-php, PHP developers can significantly reduce the carbon footprint of their applications.
 
