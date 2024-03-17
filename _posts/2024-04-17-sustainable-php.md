@@ -19,36 +19,34 @@ author: Daniel Szogyenyi
 readtime: 8
 ---
 
-# Writing sustainable PHP code: best practices and tools for energy-efficient programming
-
 ## Introduction
 
-In today's software development landscape, there's a rising awareness of the environmental impact of our code. Sustainable coding practices, emphasizing efficiency and resource optimization, have become essential. This article explores sustainable coding tailored for PHP developers, offering insights into best practices and tools to reduce the energy footprint of PHP applications.
+In today's software development landscape, there's a rising awareness of the __environmental impact of our code__. Sustainable coding practices, emphasizing efficiency and resource optimization, have become essential. This article explores sustainable coding tailored for PHP developers, offering insights into best practices and tools to reduce the energy footprint of PHP applications.
 
-As digital usage grows, so does energy consumption. Concerns over the environmental consequences urge developers to minimize energy usage while maintaining functionality and performance. Our focus here is on optimizing server-side PHP code for energy efficiency, empowering developers to create greener and more sustainable applications.
+As digital usage grows, so does energy consumption. Concerns over the environmental consequences urge developers to __minimize energy usage while maintaining functionality and performance__. Our focus here is on optimizing server-side PHP code for energy efficiency, empowering developers to create greener and more sustainable applications.
 
 ## Understanding sustainable coding in PHP
 
 Sustainable PHP coding entails practices aimed at minimizing energy consumption and environmental impact while preserving functionality and performance. This involves optimizing code to reduce resource usage, including CPU cycles, memory, and network bandwidth, thereby promoting efficiency and sustainability in software development.
 
-Inefficient PHP code not only affects functionality but also increases energy consumption and carbon emissions. Practices such as inefficient algorithms, suboptimal database queries, and redundant code execution exacerbate this impact, straining servers and infrastructure unnecessarily.
+__Inefficient PHP code not only affects functionality__ but also increases energy consumption and carbon emissions. Practices such as inefficient algorithms, suboptimal database queries, and redundant code execution exacerbate this impact, straining servers and infrastructure unnecessarily.
 
-By adopting sustainable coding practices, PHP developers can significantly decrease energy consumption and resource usage. Optimization techniques like efficient algorithm design, caching mechanisms, and minimizing I/O operations not only enhance user experience but also lower server load and operational costs. Embracing these practices contributes to a greener digital ecosystem, aligning with broader efforts to mitigate the environmental impact of technology.
+By adopting sustainable coding practices, PHP __developers can significantly decrease energy consumption__ and resource usage. Optimization techniques like efficient algorithm design, caching mechanisms, and minimizing I/O operations not only enhance user experience but also lower server load and operational costs. Embracing these practices contributes to a greener digital ecosystem, aligning with broader efforts to mitigate the environmental impact of technology.
 
 ## Introducing an energy-efficiency analysis tool
 
-In the quest for sustainable coding practices, accurately measuring energy consumption poses a significant challenge. Absolute energy consumption is influenced by various factors, including hardware infrastructure and environmental conditions, making it challenging to establish precise metrics. However, relative energy consumption offers a practical approach to comparing the efficiency of different code implementations under standardized conditions.
+In the quest for sustainable coding practices, __accurately measuring energy consumption poses a significant challenge__. Absolute energy consumption is influenced by various factors, including hardware infrastructure and environmental conditions, making it challenging to establish precise metrics. However, __relative energy consumption__ offers a practical approach to comparing the efficiency of different code implementations under standardized conditions.
 
-I've created a tool that facilitates the measurement of relative energy consumption: [Joulenne](https://github.com/szogyenyid/joulenne).  
+I've created a tool that facilitates the measurement of relative energy consumption: [__Joulenne__](https://github.com/szogyenyid/joulenne).  
 Leveraging the Linux tool turbostat, Joulenne provides insights into the energy consumption of processes, offering valuable data for optimizing code efficiency. While turbostat being originally designed for general-purpose energy measurement, Joulenne allows it to be applied to any process, including PHP code execution.
 
-Let's consider an example scenario where Joulenne is used to measure the energy consumption of a specific piece of PHP code. By executing the code on the same device and under consistent settings, Joulenne captures energy consumption metrics, providing developers with quantitative data to assess code efficiency.
+Let's consider an example scenario where Joulenne is used to measure the energy consumption of a specific piece of PHP code. By executing the code on the same device and under consistent settings, __Joulenne captures energy consumption metrics__, providing developers with quantitative data to assess code efficiency.
 
 ### Example usage of [Joulenne](https://github.com/szogyenyid/joulenne)
 
-Consider a typical bad practice in PHP: using `count($myArray)` in a for-loop.
+Consider a typical bad practice in PHP: using `count($array)` in a for-loop.
 
-You might have seen this code several times:
+You might have seen pieces code like this several times:
 ```php
 for ($i=0; $i<count($a); $i++) {
     // Do something
@@ -69,9 +67,9 @@ And this is the point where Joulenne comes in handy. Let's test [these examples]
 sudo ./joulenne.sh --runner php --test-dir examples/php/size-in-loop --interval 1 --cycles 10
 ```
 
-The `--interval` specifies the number of seconds a piece of code should run for, while `--cycles` tells the tool to run measurements this many times. So the above command runs every example code for 1 second, 10 times, and returns the average energy consumption of these 10 runs.
+_The `--interval` option specifies the number of seconds a piece of code should run for, while `--cycles` tells the tool to run measurements this many times. So the above command runs every example code for 1 second, 10 times, and returns the average energy consumption of these 10 runs._
 
-Here are my results on my computer:
+Here are the results on my computer:
 
 | Test        | Energy consumption of CPU | Diff from sys | Compared to lowest |
 | ----------- | ------------------------- | ------------- | ------------------ |
@@ -79,17 +77,17 @@ Here are my results on my computer:
 | before-loop | 2.57 Joules               | 0.79 Joules   | baseline           |
 | in-loop     | 3.29 Joules               | 1.51 Joules   | +91.13%            |
 
-Let's interpret this: if a for-loop with a `count()` in its check runs for a second, it will use about 91% more energy than a loop with a comparison to a predefined aim.
+Let's interpret this: if a for-loop with a `count()` in its check runs for a second, __it will use about 91% more energy__ than a loop with a comparison to a predefined aim.
 
 ### Purpose and limitations of Joulenne
 
 These energy-efficiency analysis tools work by monitoring hardware-level metrics, such as CPU utilization, frequency scaling, and power consumption, to evaluate code efficiency. By correlating code execution with energy consumption, developers can identify performance bottlenecks and inefficiencies, guiding them towards optimizing their applications for reduced resource usage and energy consumption.
 
-Tools like this are not really able to monitor whole applications, as the majority of requests arriving to a server are handled differently. The main purpose of Joulenne is to identify best practices in lab-like environments, and apply them in real life after a lot of measurements and an exhaustive testing.
+Tools like this are not really able to monitor whole applications, as the majority of requests arriving to a server are handled differently. The main purpose of Joulenne is to __identify best practices in lab-like environments__, and apply them in real life after a lot of measurements and an exhaustive testing.
 
 ## Best practices for sustainable PHP coding
 
-While there isn't a one-size-fits-all set of rules for writing energy-efficient PHP code, initiatives like [Green Code Initiative](https://github.com/green-code-initiative) aim to establish guidelines to promote sustainability in software development. Their tool, [ecoCode](https://github.com/green-code-initiative/ecoCode-php) has a collection of best practices specifically tailored for developers, designed to optimize code efficiency and reduce resource consumption.
+While there isn't a one-size-fits-all set of rules for writing energy-efficient PHP code, initiatives like [Green Code Initiative](https://github.com/green-code-initiative) aim to establish guidelines to promote sustainability in software development. Their tool, [ecoCode](https://github.com/green-code-initiative/ecoCode-php) has a __collection of best practices__ specifically tailored for developers, designed to optimize code efficiency and reduce resource consumption.
 
 Some of the key rules for PHP include:
 
@@ -107,8 +105,8 @@ By adhering to ecoCode's principles and leveraging its resources, PHP developers
 
 ## Conclusion
 
-In conclusion, sustainable coding practices on the backend embody a commitment to environmental responsibility and resource optimization. By implementing energy-efficient techniques and utilizing tools like Joulenne and ecoCode-php, PHP developers can significantly reduce the carbon footprint of their applications.
+In conclusion, sustainable coding practices on the backend side embody a commitment to environmental responsibility and resource optimization. By implementing energy-efficient techniques and utilizing tools like Joulenne and ecoCode-php, PHP developers can significantly reduce the carbon footprint of their applications.
 
-Optimizing code for energy efficiency not only benefits the environment but also leads to improved performance, lower operational costs, and enhanced user experience. By embracing sustainable coding, developers showcase their dedication to environmental stewardship and inspire others in the software development community.
+Optimizing code for energy efficiency __not only benefits the environment but also leads to improved performance__, lower operational costs, and enhanced user experience. By embracing sustainable coding, developers showcase their dedication to environmental stewardship and inspire others in the software development community.
 
 Let's recognize the impact of our code on the planet and prioritize sustainability in our coding philosophy. I urge PHP developers to adopt sustainable coding practices, integrate relevant tools, and contribute to a more energy-efficient future, one line of code at a time. Together, we can make a meaningful difference.
